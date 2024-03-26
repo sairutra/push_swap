@@ -1,10 +1,10 @@
-include sources.mk
+include src/shared/sources.mk
 
 LIBFT.A = libft.a
 
 LIBFT.H = libft.h
 
-LIBFT = libft
+LIBFT = src/shared/libft
 
 NAME = push_swap
 
@@ -15,11 +15,10 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME) 
 
 $(NAME): $(LIBFT.A)
-	@$(CC) $(CFLAGS) $(SOURCES) libft.a -o $(NAME)  
+	@$(CC) $(CFLAGS) $(SOURCES) $(LIBFT)/$(LIBFT.A) -o $(NAME)  
 
 $(LIBFT.A): 
 	@$(MAKE) -C $(LIBFT) all
-	cp $(LIBFT)/$(LIBFT.A) ./
 
 clean:
 	@$(MAKE) -C $(LIBFT) clean
