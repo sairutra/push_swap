@@ -21,5 +21,7 @@ void	ps_lstadd_front(t_pslist	**lst, t_pslist	*new);
 int	ps_lstsize(t_pslist *lst);
 t_pslist	*ps_lstlast(t_pslist	*lst);
 void	ps_lstadd_back(t_pslist	**lst, t_pslist	*new);
+void	ps_lstclear(t_pslist	**lst);
+void	ps_lstdelone(t_pslist	*lst);
 
 #endif

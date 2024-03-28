@@ -1,12 +1,12 @@
 #include "../shared/push_swap.h"
 
-void	ps_lstdelone(t_pslist	*lst, void (*del)(int))
+void	ps_lstdelone(t_pslist	*lst)
 {
-	del(lst->content);
+	lst->content = 0;
 	free(lst);
 }
 
-void	ps_lstclear(t_pslist	**lst, void (*del)(int))
+void	ps_lstclear(t_pslist	**lst)
 {
 	t_pslist	*temp_frt;
 	t_pslist	*temp_bck;
@@ -18,7 +18,7 @@ void	ps_lstclear(t_pslist	**lst, void (*del)(int))
 	while (temp_bck)
 	{
 		temp_frt = temp_frt->next;
-		del(temp_bck->content);
+		temp_bck->content = 0;
 		free(temp_bck);
 		temp_bck = temp_frt;
 	}
