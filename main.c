@@ -39,6 +39,7 @@ int	create_stack_a(t_pslist **llist, char **argv)
 
 int main (int argc, char **argv)
 {
+	t_pslist	*head;
 	t_pslist	*stack_a;
 	t_pslist	*stack_b;
 
@@ -53,11 +54,13 @@ int main (int argc, char **argv)
 	}
 	if(create_stack_a(&stack_a, argv))
 		exit(EXIT_FAILURE);
+	head = stack_a;
 	while (stack_a != NULL)
 	{
 		printf("test: %d\n", stack_a->content);
 		stack_a = stack_a->next;
 	}
+	stack_a = head;
 	ps_lstclear(&stack_a);
 	return(0);
 }

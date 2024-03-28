@@ -18,23 +18,18 @@ void	ps_lstadd_front(t_pslist	**lst, t_pslist	*new)
 	(*lst) = new;
 }
 
-
 int	ps_lstsize(t_pslist *lst)
 {
 	int		size;
 	t_pslist	*temp;
 
 	size = 0;
-	temp = malloc(sizeof(t_pslist));
-	if (temp == NULL)
-		return (0);
 	temp = lst;
 	while (temp != NULL)
 	{
 		temp = temp->next;
 		size++;
 	}
-	free(temp);
 	return (size);
 }
 
@@ -42,9 +37,6 @@ t_pslist	*ps_lstlast(t_pslist	*lst)
 {
 	t_pslist	*last;
 
-	last = malloc(sizeof(t_pslist));
-	if (last == NULL)
-		return (NULL);
 	last = lst;
 	if (last == NULL)
 		return (NULL);
