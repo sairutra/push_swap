@@ -1,27 +1,36 @@
 #include "src/shared/push_swap.h"
+#include <stdio.h>
 
-t_list *create_stack_a(char **argv)
+t_pslist *create_stack_a_node(char *v)
+{
+	int		content;
+	t_pslist	*node;
+
+	content = ft_atoi(v);
+	node = ps_lstnew(content);
+	if (node == NULL)
+		return (NULL);
+	printf("create_node: %d\n", node->content);
+	return(node);
+}
+
+t_pslist *create_stack_a(char **argv)
 {
 	int		index;
-	int		*content;
-	t_list	*llist;
-	t_list	*new_node;
+	t_pslist	*llist;
+	t_pslist	*new_node;
 
-	index = 1;
-
-	llist = ft_lstnew(argv[0]);
-	if (llist == NULL)
+	index = 0;
+	new_node = create_stack_a_node(argv[index++]);
+	if(new_node == NULL)
 		return (NULL);
+	llist = new_node;
 	while(argv[index] != NULL)
 	{
-		content = malloc(sizeof(int));
-		if(content == NULL)
-			return (NULL);
-		content = ft_atoi(argv[index]); 
-		new_node = ft_lstnew(content);
+		new_node = create_stack_a_node(argv[index]);
 		if (new_node == NULL)
 			return (NULL);
-		ft_lstadd_back(&llist, new_node);
+		ps_lstadd_back(&llist, new_node);
 		index++;
 	}
 	return(llist);
@@ -29,8 +38,8 @@ t_list *create_stack_a(char **argv)
 
 int main (int argc, char **argv)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	t_pslist	*stack_a;
+	t_pslist	*stack_b;
 
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
@@ -40,11 +49,12 @@ int main (int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	stack_a = create_stack_a(argv);
+	if(stack_a == NULL)
+		exit(EXIT_FAILURE);
 	(void)stack_b;
-	ft_printf("Stack a\n");
-	while(stack_a->next != NULL)
+	while (stack_a != NULL)
 	{
-		ft_printf("%d\n", stack_a->content);
+		printf("%d\n", stack_a->content);
 		stack_a = stack_a->next;
 	}
 	return(0);
