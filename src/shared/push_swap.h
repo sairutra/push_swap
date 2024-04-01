@@ -75,4 +75,15 @@ int	create_stack(t_pslist **llist, char **argv);
 // Function has failed when return value is NULL.
 t_pslist *create_node(char *v);
 
+//operations
+
+// This function takes a stacks and swaps the first
+// two elements. Except if the stack only has one element
+// then it does nothing.
+void	swap(t_pslist** stack);
+// This function takes two stacks and then calls the swap
+// function for both of them.
+void	sswap(t_pslist** stack_a, t_pslist** stack_b);
+
+
 #endif
