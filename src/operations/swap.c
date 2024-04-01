@@ -16,7 +16,7 @@ int	swap_check(t_pslist** stack)
 	return(elm);
 }
 
-void	swap(t_pslist** stack)
+void	swap(t_pslist** stack, int print)
 {
 	t_pslist* temp;
 	
@@ -26,10 +26,15 @@ void	swap(t_pslist** stack)
 	(*stack)->next = temp->next; 
 	temp->next = (*stack);
 	(*stack) = temp;
+	if(print == sa)
+		ft_printf("sa\n");
+	if(print == sb)
+		ft_printf("sb\n");
 }
 
 void	sswap(t_pslist** stack_a, t_pslist** stack_b)
 {
-	swap(stack_a);
-	swap(stack_b);
+	ft_printf("ss\n");
+	swap(stack_a, ss);
+	swap(stack_b, ss);
 }

@@ -10,6 +10,10 @@ typedef struct s_pslist
 	struct s_pslist	*next;
 }	t_pslist;
 
+
+enum e_swap{ss, sa, sb};
+enum e_push{pa, pb};
+
 // checker
 
 // Function checks if the char pointer test is 
@@ -79,15 +83,17 @@ t_pslist *create_node(char *v);
 
 // This function takes a stacks and swaps the first
 // two elements. Except if the stack only has one element
-// then it does nothing.
-void	swap(t_pslist** stack);
+// then it does nothing. The print int determines which 
+// operation it will print, {sa, sb}
+void	swap(t_pslist** stack, int print);
 // This function takes two stacks and then calls the swap
 // function for both of them.
 void	sswap(t_pslist** stack_a, t_pslist** stack_b);
 // This function takes two stacks, and puts the first element
 // of stack_1 on top of stack_2, if stack_1 is empty function
-// does nothing.
-void push(t_pslist **stack_1, t_pslist **stack_2);
+// does nothing. The print int determines which 
+// operation it will print, {pa, pb}
+void push(t_pslist **stack_1, t_pslist **stack_2, int print);
 
 
 #endif
