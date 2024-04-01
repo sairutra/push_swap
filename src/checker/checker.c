@@ -1,6 +1,8 @@
 #include "../shared/push_swap.h"
 
-int check_stack_a_argument_val(char *test)
+// maybe also accept + in program, not sure 
+// it is mandatory
+int check_stack_argument_val(char *test)
 {
 	int	index;
 
@@ -15,7 +17,7 @@ int check_stack_a_argument_val(char *test)
 	return (EXIT_SUCCESS);
 }
 
-int check_stack_a_argument_int(char *test)
+int check_stack_argument_int(char *test)
 {
 	char	*cmp;
 	int		ret;
@@ -36,22 +38,22 @@ int check_stack_a_argument_int(char *test)
 	return (EXIT_SUCCESS);
 }
 
-int check_stack_a_arguments(char **argv)
+int check_stack_arguments(char **argv)
 {
 	int	index;
 
 	index = 0;
 	while(argv[index] != NULL)
 	{
-		if(check_stack_a_argument_val(argv[index]))
+		if(check_stack_argument_val(argv[index]))
 			return(EXIT_FAILURE);
-		if(check_stack_a_argument_int(argv[index++]))
+		if(check_stack_argument_int(argv[index++]))
 			return(EXIT_FAILURE);
 	}
 	return(EXIT_SUCCESS);
 }
 
-int check_stack_a_duplicate(char **argv)
+int check_stack_duplicate(char **argv)
 {
 	int	oi;
 	int	ii;
@@ -71,11 +73,11 @@ int check_stack_a_duplicate(char **argv)
 	return(EXIT_SUCCESS);
 }
 
-int check_stack_a(char **argv)
+int check_stack(char **argv)
 {
-	if (check_stack_a_arguments(argv))
+	if (check_stack_arguments(argv))
 		return(1);
-	if (check_stack_a_duplicate(argv))
+	if (check_stack_duplicate(argv))
 		return(1);
 	return(0);
 }
