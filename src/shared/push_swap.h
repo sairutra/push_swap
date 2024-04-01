@@ -84,6 +84,10 @@ void	swap(t_pslist** stack);
 // This function takes two stacks and then calls the swap
 // function for both of them.
 void	sswap(t_pslist** stack_a, t_pslist** stack_b);
+// This function takes two stacks, and puts the first element
+// of stack_1 on top of stack_2, if stack_1 is empty function
+// does nothing.
+void push(t_pslist **stack_1, t_pslist **stack_2);
 
 
 #endif
