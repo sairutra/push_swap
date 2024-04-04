@@ -1,5 +1,3 @@
-#include inc/sources.mk
-
 #Compiler and Linker
 CC          := cc
 
@@ -19,7 +17,6 @@ OBJEXT      := o
 CFLAGS      := -Wall -Werror -Wextra
 LIBFT       := libft
 LIBFT.A     := libft.a
-#INC         := -I$(INCDIR) -I/usr/local/include
 
 #---------------------------------------------------------------------------------
 #DO NOT EDIT BELOW THIS LINE
@@ -42,10 +39,12 @@ directories:
 #Clean only Objects
 clean:
 	@$(RM) -rf $(BUILDDIR)
+	@$(MAKE) -C $(LIBFT) clean
 
 #Full Clean, Objects and Binaries
 fclean: clean
 	@$(RM) -rf $(TARGETDIR)
+	@$(MAKE) -C $(LIBFT) fclean
 
 #Link
 $(TARGET): $(OBJECTS)
