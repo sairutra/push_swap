@@ -1,4 +1,4 @@
-#include "../shared/push_swap.h"
+#include "../../inc/push_swap.h"
 
 int	swap_check(t_pslist** stack)
 {

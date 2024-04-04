@@ -1,4 +1,4 @@
-#include "src/shared/push_swap.h"
+#include "../../inc/push_swap.h"
 #include <stdio.h>
 
 

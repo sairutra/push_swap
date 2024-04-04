@@ -1,4 +1,4 @@
-#include "../shared/push_swap.h"
+#include "../../inc/push_swap.h"
 
 t_pslist	*ps_lstnew(int content)
 {

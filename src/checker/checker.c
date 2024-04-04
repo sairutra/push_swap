@@ -1,4 +1,4 @@
-#include "../shared/push_swap.h"
+#include "../../inc/push_swap.h"
 
 // maybe also accept + in program, not sure 
 // it is mandatory

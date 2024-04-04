@@ -1,4 +1,4 @@
-#include "../shared/push_swap.h"
+#include "../../inc/push_swap.h"
 
 void push(t_pslist **stack_1, t_pslist **stack_2, int print)
 {

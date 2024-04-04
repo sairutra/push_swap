@@ -1,4 +1,4 @@
-#include "../shared/push_swap.h"
+#include "../../inc/push_swap.h"
 
 void	ps_lstdelone(t_pslist	*lst)
 {

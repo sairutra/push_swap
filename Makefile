@@ -1,33 +1,63 @@
-include src/shared/sources.mk
+#include inc/sources.mk
 
-LIBFT.A = libft.a
+#Compiler and Linker
+CC          := cc
 
-LIBFT.H = libft.h
+#The Target Binary Program
+TARGET      := push_swap
 
-LIBFT = src/shared/libft
+#The Directories, Source, Includes, Objects, Binary and Resources
+SRCDIR      := src
+INCDIR      := inc
+BUILDDIR    := obj
+TARGETDIR   := bin
+RESDIR      := res
+SRCEXT      := c
+OBJEXT      := o
 
-NAME = push_swap
+#Flags, Libraries and Includes
+CFLAGS      := -Wall -Werror -Wextra
+LIBFT       := libft
+LIBFT.A     := libft.a
+#INC         := -I$(INCDIR) -I/usr/local/include
 
-CC = cc
+#---------------------------------------------------------------------------------
+#DO NOT EDIT BELOW THIS LINE
+#---------------------------------------------------------------------------------
+SOURCES     := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS     := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
 
-CFLAGS = -Wall -Werror -Wextra
+#Default Make
+all: directories $(LIBFT.A) $(TARGET)
 
-all: $(NAME) 
+#Remake
+re: fclean all
+	@$(MAKE) -C $(LIBFT) re
 
-$(NAME): $(LIBFT.A)
-	@$(CC) $(CFLAGS) $(SOURCES) $(LIBFT)/$(LIBFT.A) -fsanitize=address -o $(NAME)  
+#Make the Directories
+directories:
+	@mkdir -p $(TARGETDIR)
+	@mkdir -p $(BUILDDIR)
 
-$(LIBFT.A): 
+#Clean only Objects
+clean:
+	@$(RM) -rf $(BUILDDIR)
+
+#Full Clean, Objects and Binaries
+fclean: clean
+	@$(RM) -rf $(TARGETDIR)
+
+#Link
+$(TARGET): $(OBJECTS)
+	$(CC) $^ $(LIBFT)/$(LIBFT.A) -o $(TARGETDIR)/$(TARGET)
+
+$(LIBFT.A):
 	@$(MAKE) -C $(LIBFT) all
 
-clean:
-	@$(MAKE) -C $(LIBFT) clean
-	rm -rf *.o
-	rm -rf *.a
+#Compile
+$(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
-fclean: clean
-	@$(MAKE) -C $(LIBFT) fclean
-	rm -rf push_swap
-
-re: fclean all
-
+#Non-File Targets
+.PHONY: all re clean fclean 
