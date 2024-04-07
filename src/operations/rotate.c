@@ -1,5 +1,14 @@
 #include "../../inc/push_swap.h"
 
+void rotate_print(int print)
+{
+	if(print == ra)
+		ft_printf("ra\n");
+	if(print == rb)
+		ft_printf("rb\n");	
+}
+
+
 void rotate(t_pslist **stack, int print)
 {
 	t_pslist	*first;
@@ -17,6 +26,7 @@ void rotate(t_pslist **stack, int print)
 		(*stack) = last;
 		last->next = first;
 		(*stack)->next->next = NULL;
+		rotate_print(print);
 		return;
 	}
 	second_last = ps_lst_second_last((*stack));
@@ -24,9 +34,12 @@ void rotate(t_pslist **stack, int print)
 	last->next = first->next;
 	second_last->next = first;
 	first->next = NULL;
-	if(print == ra)
-		ft_printf("ra\n", last->content);
-	if(print == rb)
-		ft_printf("rb\n", last->content);
+	rotate_print(print);
 }
 
+void rrotate(t_pslist **stack_a, t_pslist **stack_b)
+{
+	ft_printf("rr\n");
+	rotate(stack_a, rr);
+	rotate(stack_b, rr);
+}

@@ -107,5 +107,7 @@ void push(t_pslist **stack_1, t_pslist **stack_2, int print);
 // if stack is made of only one element, it will do nothing.
 // The print int determines which operation it will print, {ra, rb}
 void rotate(t_pslist **stack, int print);
-
+// This function takes two stacks and then calls the rotate
+// function for both of them.
+void rrotate(t_pslist **stack_a, t_pslist **stack_b);
 #endif
