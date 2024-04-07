@@ -26,6 +26,8 @@ int main (int argc, char **argv)
 	// sswap(&stack_a, &stack_b);
 	push(&stack_a, &stack_b, pb);
 	push(&stack_a, &stack_b, pb);
+	rotate(&stack_a, rra);
+	rotate(&stack_b, rrb);
 	rrotate(&stack_a, &stack_b);
 	head = stack_a;
 	headb = stack_b;

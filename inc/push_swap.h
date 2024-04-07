@@ -14,6 +14,7 @@ typedef struct s_pslist
 enum e_swap{ss, sa, sb};
 enum e_push{pa, pb};
 enum e_rotate{ra, rb, rr};
+enum e_rrotate{rra, rrb, rrr};
 
 // checker
 
@@ -103,11 +104,20 @@ void	sswap(t_pslist** stack_a, t_pslist** stack_b);
 // operation it will print, {pa, pb}
 void push(t_pslist **stack_1, t_pslist **stack_2, int print);
 // This function takes a stack, and puts the first element
-// as the last element and vice versa, 
-// if stack is made of only one element, it will do nothing.
+// as the last element. if stack is made of only one element, 
+// it will do nothing.
 // The print int determines which operation it will print, {ra, rb}
 void rotate(t_pslist **stack, int print);
 // This function takes two stacks and then calls the rotate
 // function for both of them.
 void rrotate(t_pslist **stack_a, t_pslist **stack_b);
+// This function takes a stack, and puts the last element
+// as the first element. if stack is made of only one element, 
+// it will do nothing.
+// The print int determines which operation it will print, {ra, rb}
+void rev_rotate(t_pslist **stack, int print);
+// This function takes two stacks and then calls the rev_rotate
+// function for both of them.
+void rev_rrotate(t_pslist **stack_a, t_pslist **stack_b);
+
 #endif

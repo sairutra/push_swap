@@ -12,8 +12,9 @@ void rotate_print(int print)
 void rotate(t_pslist **stack, int print)
 {
 	t_pslist	*first;
+	t_pslist	*second;
 	t_pslist	*last;
-	t_pslist	*second_last;
+	// t_pslist	*second_last;
 	int			lstsize;
 
 	first = (*stack);
@@ -29,10 +30,11 @@ void rotate(t_pslist **stack, int print)
 		rotate_print(print);
 		return;
 	}
-	second_last = ps_lst_second_last((*stack));
-	(*stack) = last;
-	last->next = first->next;
-	second_last->next = first;
+	// second_last = ps_lst_second_last((*stack));
+	second = first->next;
+	(*stack) = second;
+	last->next = first;
+	// second_last->next = first;
 	first->next = NULL;
 	rotate_print(print);
 }
