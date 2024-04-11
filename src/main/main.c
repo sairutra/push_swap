@@ -20,15 +20,16 @@ int main (int argc, char **argv)
 	if(create_stack(&stack_a, argv))
 		exit(EXIT_FAILURE);
 	head = stack_a;
+	headb = stack_b;
 	// ps_lstdelone(stack_b->next);
 	// stack_b->next = NULL;
-	headb = stack_b;
 	// sswap(&stack_a, &stack_b);
-	push(&stack_a, &stack_b, pb);
-	push(&stack_a, &stack_b, pb);
-	rotate(&stack_a, rra);
-	rotate(&stack_b, rrb);
-	rrotate(&stack_a, &stack_b);
+	// push(&stack_a, &stack_b, pb);
+	// push(&stack_a, &stack_b, pb);
+	// rotate(&stack_a, rra);
+	// rotate(&stack_b, rrb);
+	// rrotate(&stack_a, &stack_b);
+	bubble_sort(&stack_a, &stack_b);
 	head = stack_a;
 	headb = stack_b;
 	while (stack_a != NULL)

@@ -16,6 +16,7 @@ OBJEXT      := o
 #Flags, Libraries and Includes
 CFLAGS      := -Wall -Werror -Wextra
 LIBFT       := libft
+LIB         := lib
 LIBFT.A     := libft.a
 
 #---------------------------------------------------------------------------------
@@ -48,7 +49,7 @@ fclean: clean
 
 #Link
 $(TARGET): $(OBJECTS)
-	$(CC) $^ $(LIBFT)/$(LIBFT.A) -o $(TARGETDIR)/$(TARGET)
+	$(CC) $^ $(LIBFT)/$(LIB)/$(LIBFT.A) -o $(TARGETDIR)/$(TARGET)
 
 $(LIBFT.A):
 	@$(MAKE) -C $(LIBFT) all

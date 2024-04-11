@@ -2,7 +2,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
+# include "../libft/inc/libft.h"
 
 typedef struct s_pslist
 {
@@ -120,4 +120,11 @@ void rev_rotate(t_pslist **stack, int print);
 // function for both of them.
 void rev_rrotate(t_pslist **stack_a, t_pslist **stack_b);
 
+//algorithmes
+void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
+
+
+//utils
+int check_n_sorted(t_pslist	**stack_a, int n,const char flag);
+void print_stack(t_pslist	**stack, char name);
 #endif
