@@ -1,0 +1,3 @@
+[submodule "tests/gnirut"]
+	path = tests/gnirut
+	url = https://github.com/sebastianpenning/gnirut.git
