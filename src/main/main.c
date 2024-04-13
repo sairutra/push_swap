@@ -32,18 +32,18 @@ int main (int argc, char **argv)
 	bubble_sort(&stack_a, &stack_b);
 	head = stack_a;
 	headb = stack_b;
-	while (stack_a != NULL)
-	{
-		printf("test: %d\n", stack_a->content);
-		stack_a = stack_a->next;
-	}
-	while (stack_b != NULL)
-	{
-		printf("testb: %d\n", stack_b->content);
-		stack_b = stack_b->next;
-	}
-	stack_a = head;
-	stack_b = headb;
+	// while (stack_a != NULL)
+	// {
+	// 	printf("test: %d\n", stack_a->content);
+	// 	stack_a = stack_a->next;
+	// }
+	// while (stack_b != NULL)
+	// {
+	// 	printf("testb: %d\n", stack_b->content);
+	// 	stack_b = stack_b->next;
+	// }
+	// stack_a = head;
+	// stack_b = headb;
 	ps_lstclear(&stack_a);
 	ps_lstclear(&stack_b);
 	return(0);

@@ -57,15 +57,23 @@ int check_stack_duplicate(char **argv)
 {
 	int	oi;
 	int	ii;
+	size_t len;
 
+	len = 0;
 	oi = 0;
 	ii = 1;
 	while(argv[oi] != NULL)
 	{
 		while(argv[ii] != NULL)
 		{
-			if(!ft_strncmp(argv[oi], argv[ii++], ft_strlen(argv[oi])))
+			len = ft_strlen(argv[oi]);
+			if(len < ft_strlen(argv[ii]))
+				len = ft_strlen(argv[ii]);
+			if(!ft_strncmp(argv[oi], argv[ii++], len))
+			{
+				ft_printf("fail: argv[oi]%s argv[ii]%s\n", argv[oi], argv[--ii]);
 				return(EXIT_FAILURE);
+			}
 		}
 		oi++;
 		ii = oi + 1;
@@ -76,8 +84,14 @@ int check_stack_duplicate(char **argv)
 int check_stack(char **argv)
 {
 	if (check_stack_arguments(argv))
+	{
+		ft_printf("fail arg\n");
 		return(1);
+	}
 	if (check_stack_duplicate(argv))
+	{
+		ft_printf("fail dup\n");
 		return(1);
+	}
 	return(0);
 }
