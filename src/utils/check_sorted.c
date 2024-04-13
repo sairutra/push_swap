@@ -6,7 +6,7 @@ int check_n_sorted(t_pslist	**stack_a, int n,const char flag)
 	t_pslist	*temp;
 	int			index;
 
-	index = 0;
+	index = 1;
 	sorted = 1;
 	temp = (*stack_a);
 	while (temp->next != NULL && index < n)
