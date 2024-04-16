@@ -3,9 +3,9 @@
 void rev_rotate_print(int print)
 {
 	if(print == rra)
-		ft_printf("ra\n");
+		ft_printf("rra\n");
 	if(print == rrb)
-		ft_printf("rb\n");	
+		ft_printf("rrb\n");	
 }
 
 

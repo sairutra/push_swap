@@ -50,8 +50,7 @@ clean:
 	@$(RM) -rf $(BUILDDIR)
 	@$(MAKE) -C $(GNIRUT) clean
 
-#Full Clean, Objects and Binaries
-fclean: clean
+#Full Clean, Objects and Binaries1
 	@$(RM) -rf $(TARGETDIR)
 	@$(RM) -rf $(BUILDDIR)
 	@$(RM) -rf $(LOGDIR)
@@ -59,7 +58,7 @@ fclean: clean
 
 #Link
 $(TARGET): $(OBJECTS)
-	$(CC) $^ $(GNIRUT)/$(LIB)/$(GNIRUT.A) -o $(TARGETDIR)/$(TARGET)
+	$(CC) $^ $(GNIRUT)/$(LIB)/$(GNIRUT.A) -o $(TARGETDIR)/$(TARGET) -g
 
 $(GNIRUT.A):
 	@$(MAKE) -C $(GNIRUT) all

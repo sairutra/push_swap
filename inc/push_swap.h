@@ -125,6 +125,7 @@ void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
 
 
 //utils
+int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
 int check_n_sorted(t_pslist	**stack_a, int n,const char flag);
 void print_stack(t_pslist	**stack, char name);
 #endif

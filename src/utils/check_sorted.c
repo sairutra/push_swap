@@ -22,3 +22,22 @@ int check_n_sorted(t_pslist	**stack_a, int n,const char flag)
 		sorted = 0;
 	return(sorted);
 }
+
+
+int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b)
+{
+	t_pslist	*temp;
+
+	temp = (*stack_a);
+	if((*stack_b) == NULL)
+		return(0);
+	while (temp != NULL)
+	{
+		if(temp-> content < (*stack_b)->content)
+			return(0);
+		temp = temp->next;
+	}
+	if(check_n_sorted(stack_a, ps_lstsize((*stack_a)), '+') && check_n_sorted(stack_b, ps_lstsize((*stack_b)), '-'))
+		return(1);
+	return(0);
+}
