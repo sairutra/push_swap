@@ -17,6 +17,7 @@ OBJEXT      := o
 #Flags, Libraries and Includes
 CFLAGS      := -Wall -Werror -Wextra
 GNIRUT      := gnirut
+PUSHSWAP    := push_swap
 LIB         := lib
 GNIRUT.A    := gnirut.a
 
@@ -36,6 +37,7 @@ bubble:
 #Remake
 re: fclean all
 	@$(MAKE) -C $(GNIRUT) re
+	@$(MAKE) -C ../../$(PUSHSWAP) re
 
 #Make the Directories
 directories:
