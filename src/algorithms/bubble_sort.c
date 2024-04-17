@@ -10,17 +10,17 @@ void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b)
 		if((*stack_b) == NULL || (*stack_a)-> content > (*stack_b)->content)
 		{
 			push(stack_a, stack_b, pa);
-			print_stack(stack_a, 'a');
-			print_stack(stack_b, 'b');
+			// print_stack(stack_a, 'a');
+			// print_stack(stack_b, 'b');
 		}
 		if((*stack_a)-> content < (*stack_b)->content)
 		{
 			push(stack_b, stack_a, pb);
-			print_stack(stack_a, 'a');
-			print_stack(stack_b, 'b');
+			// print_stack(stack_a, 'a');
+			// print_stack(stack_b, 'b');
 			swap(stack_a, sa);
-			print_stack(stack_a, 'a');
-			print_stack(stack_b, 'b');
+			// print_stack(stack_a, 'a');
+			// print_stack(stack_b, 'b');
 		}
 		// if(check_n_sorted(stack_a, ps_lstsize((*stack_a)), '+') && check_n_sorted(stack_b, ps_lstsize((*stack_b)), '-'))
 		if(check_sorted_stack(stack_a, stack_b))

@@ -7,6 +7,7 @@
 typedef struct s_pslist
 {
 	int				content;
+	int				rrank;
 	struct s_pslist	*next;
 }	t_pslist;
 
@@ -114,7 +115,7 @@ void rrotate(t_pslist **stack_a, t_pslist **stack_b);
 // This function takes a stack, and puts the last element
 // as the first element. if stack is made of only one element, 
 // it will do nothing.
-// The print int determines which operation it will print, {ra, rb}
+// The print int determines which operation it will print, {rra, rrb}
 void rev_rotate(t_pslist **stack, int print);
 // This function takes two stacks and then calls the rev_rotate
 // function for both of them.
@@ -122,10 +123,13 @@ void rev_rrotate(t_pslist **stack_a, t_pslist **stack_b);
 
 //algorithmes
 void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
-
+void radix(t_pslist	**stack_a, t_pslist	**stack_b);
 
 //utils
 int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
 int check_n_sorted(t_pslist	**stack_a, int n,const char flag);
 void print_stack(t_pslist	**stack, char name);
+int ndigits(t_pslist* stack);
+void print_rank_stack(t_pslist	**stack, char name);
+
 #endif

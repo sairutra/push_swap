@@ -49,7 +49,7 @@ fclean: clean
 
 #Link
 $(TARGET): $(OBJECTS)
-	$(CC) $^ $(LIBFT)/$(LIB)/$(LIBFT.A) -o $(TARGETDIR)/$(TARGET)
+	$(CC) $^ $(LIBFT)/$(LIB)/$(LIBFT.A) gnirut.a -o $(TARGETDIR)/$(TARGET)
 
 $(LIBFT.A):
 	@$(MAKE) -C $(LIBFT) all
