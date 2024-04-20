@@ -2,12 +2,13 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/inc/libft.h"
+# include "../lib/libft/inc/libft.h"
 
 typedef struct s_pslist
 {
 	int				content;
 	int				rrank;
+	int 			index;
 	struct s_pslist	*next;
 }	t_pslist;
 
@@ -16,6 +17,8 @@ enum e_swap{ss, sa, sb};
 enum e_push{pa, pb};
 enum e_rotate{ra, rb, rr};
 enum e_rrotate{rra, rrb, rrr};
+enum e_moves{nm, msa, msb, mss, mpa, mpb, mra, mrb, mrr, mrra, mrrb, mrrr};
+
 
 // checker
 
@@ -121,9 +124,27 @@ void rev_rotate(t_pslist **stack, int print);
 // function for both of them.
 void rev_rrotate(t_pslist **stack_a, t_pslist **stack_b);
 
+
+void rotate_np(t_pslist **stack);
+void rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
+void rev_rotate_np(t_pslist **stack);
+void rev_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
+void push_np(t_pslist **stack_1, t_pslist **stack_2);
+void	swap_np(t_pslist** stack);
+void	sswap_np(t_pslist** stack_a, t_pslist** stack_b);
+
+void un_rotate_np(t_pslist **stack);
+void un_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
+void un_rev_rotate_np(t_pslist **stack);
+void un_rev_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
+void un_push_np(t_pslist **stack_2, t_pslist **stack_1);
+void	un_swap_np(t_pslist** stack);
+void	un_sswap_np(t_pslist** stack_a, t_pslist** stack_b);
 //algorithmes
 void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
 void radix(t_pslist	**stack_a, t_pslist	**stack_b);
+void minimal_edit(t_pslist **stack_a, t_pslist **stack_b);
+void recurse_sort(t_pslist **stack_a, t_pslist **stack_b);
 
 //utils
 int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
@@ -131,5 +152,6 @@ int check_n_sorted(t_pslist	**stack_a, int n,const char flag);
 void print_stack(t_pslist	**stack, char name);
 int ndigits(t_pslist* stack);
 void print_rank_stack(t_pslist	**stack, char name);
+void print_index_stack(t_pslist	**stack, char name);
 
 #endif

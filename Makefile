@@ -30,7 +30,7 @@ all: directories $(LIBFT.A) $(TARGET)
 
 #Remake
 re: fclean all
-	@$(MAKE) -C $(LIBFT) re
+	@$(MAKE) -C $(LIB)/$(LIBFT) re
 
 #Make the Directories
 directories:
@@ -40,19 +40,19 @@ directories:
 #Clean only Objects
 clean:
 	@$(RM) -rf $(BUILDDIR)
-	@$(MAKE) -C $(LIBFT) clean
+	@$(MAKE) -C $(LIB)/$(LIBFT) clean
 
 #Full Clean, Objects and Binaries
 fclean: clean
 	@$(RM) -rf $(TARGETDIR)
-	@$(MAKE) -C $(LIBFT) fclean
+	@$(MAKE) -C $(LIB)/$(LIBFT) fclean
 
 #Link
 $(TARGET): $(OBJECTS)
-	$(CC) $^ $(LIBFT)/$(LIB)/$(LIBFT.A) gnirut.a -o $(TARGETDIR)/$(TARGET)
+	$(CC) $^ $(LIB)/$(LIBFT)/$(LIB)/$(LIBFT.A) gnirut.a -o $(TARGETDIR)/$(TARGET)
 
 $(LIBFT.A):
-	@$(MAKE) -C $(LIBFT) all
+	@$(MAKE) -C $(LIB)/$(LIBFT) all
 
 #Compile
 $(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
