@@ -12,12 +12,12 @@ int main (int argc, char **argv)
 	stack_b = NULL;
 	stack_a = NULL;
 	// (void)argv;
-	// (void)argc;
-	// argv = char_array_of_int(10, 0, 10000);
-	if (argc == 1)
-		exit(EXIT_SUCCESS);
-	// if (check_stack(argv))
-	if (check_stack(++argv))
+	(void)argc;
+	argv = char_array_of_int(10, 0, 100);
+	// if (argc == 1)
+	// 	exit(EXIT_SUCCESS);
+	if (check_stack(argv))
+	// if (check_stack(++argv))
 	{
 		ft_printf("Error\n");
 		exit(EXIT_FAILURE);

@@ -9,6 +9,7 @@ typedef struct s_pslist
 	int				content;
 	int				rrank;
 	int 			index;
+	int 			lds;
 	struct s_pslist	*next;
 }	t_pslist;
 
@@ -153,5 +154,11 @@ void print_stack(t_pslist	**stack, char name);
 int ndigits(t_pslist* stack);
 void print_rank_stack(t_pslist	**stack, char name);
 void print_index_stack(t_pslist	**stack, char name);
+void sort_index(t_pslist **stack_a);
+void init_index(t_pslist **stack_a, int *stack_c, int len);
+void init_c(t_pslist **stack_a, int *stack_c);
+void selectionSort(int arr[], int n);
+void ss_swap(int* xp, int* yp);
+void print_index_lds_stack(t_pslist	**stack, char name);
 
 #endif
