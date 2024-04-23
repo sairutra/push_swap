@@ -3,6 +3,8 @@
 # define PUSH_SWAP_H
 
 # include "../lib/libft/inc/libft.h"
+# include "../tests/gnirut/inc/gnirut.h"
+
 
 typedef struct s_pslist
 {

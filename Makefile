@@ -17,7 +17,10 @@ OBJEXT      := o
 CFLAGS      := -Wall -Werror -Wextra
 LIBFT       := libft
 LIB         := lib
+TESTS       := tests
 LIBFT.A     := libft.a
+GNIRUT      := gnirut
+GNIRUT.A    := gnirut.a
 
 #---------------------------------------------------------------------------------
 #DO NOT EDIT BELOW THIS LINE
@@ -49,10 +52,13 @@ fclean: clean
 
 #Link
 $(TARGET): $(OBJECTS)
-	$(CC) $^ $(LIB)/$(LIBFT)/$(LIB)/$(LIBFT.A) gnirut.a -o $(TARGETDIR)/$(TARGET)
+	$(CC) $^ $(LIB)/$(LIBFT)/$(LIB)/$(LIBFT.A) $(TESTS)/$(GNIRUT)/$(LIB)/$(GNIRUT.A) -o $(TARGETDIR)/$(TARGET)
 
 $(LIBFT.A):
 	@$(MAKE) -C $(LIB)/$(LIBFT) all
+
+$(GNIRUT.A):
+	@$(MAKE) -C $(TESTS)/$(GNIRUT) all
 
 #Compile
 $(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)

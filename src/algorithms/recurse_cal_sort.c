@@ -295,14 +295,14 @@ void cal_b(int *b, t_pslist** stack_b, int size_b)
 	}
 }
 
-int max (a, b)
+int max (int a, int b)
 {
 	if(a > b)
 		return(a);
 	return(b);
 }
 
-int min (a, b)
+int min (int a, int b)
 {
 	if (a < b)
 		return(a);

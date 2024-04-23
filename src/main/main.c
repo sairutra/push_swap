@@ -1,6 +1,5 @@
 #include "../../inc/push_swap.h"
 #include <stdio.h>
-#include "../../gnirut.h"
 
 int main (int argc, char **argv)
 {
