@@ -9,8 +9,13 @@ int check_n_sorted(t_pslist	**stack_a, int n,const char flag)
 	index = 1;
 	sorted = 1;
 	temp = (*stack_a);
+	// print_stack(stack_a, 'a');
+	// ft_printf("check index: %d\n", index);
+	// ft_printf("temp: %d\n", temp->content);
+	// ft_printf("n: %d\n", n);
+	// ft_printf("temp->next: %d\n", temp->next->content);
 	while (temp->next != NULL && index < n)
-	{
+	{	
 		if((temp->content >= temp->next->content) && (flag == '+'))
 			sorted = 0;
 		if((temp->content <= temp->next->content) && (flag == '-'))
