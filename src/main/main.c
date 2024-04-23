@@ -13,7 +13,7 @@ int main (int argc, char **argv)
 	stack_a = NULL;
 	// (void)argv;
 	(void)argc;
-	argv = char_array_of_int(30, 0, 100);
+	argv = char_array_of_int(20, 0, 20);
 	// if (argc == 1)
 	// 	exit(EXIT_SUCCESS);
 	if (check_stack(argv))

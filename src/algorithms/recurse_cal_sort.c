@@ -225,7 +225,7 @@ int push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n)
 
 
 
-void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a, int size_b)
+void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a)
 {
 	int half;
 	int index;
@@ -247,6 +247,8 @@ void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a, int size_
 			ft_printf("index: %d\n", index);
 			ft_printf("temp_a->content %d\n", temp_a->content);
 			ft_printf("temp_b->content %d\n", temp_b->content);
+			if(temp_a->next == NULL)
+				break;
 			if(temp_a->next != NULL)
 				ft_printf("temp_a->next->content %d\n", temp_a->next->content);
 			if (temp_b->content < temp_a->content && index == 0)
@@ -271,12 +273,6 @@ void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a, int size_
 		b_index++;
 		temp_b = temp_b->next;
 	}
-	ft_printf("a\n--------------\n"); 
-	for (int i = 0; i < size_b; i++)
-	{
-		ft_printf("%d\n", a[i]); 
-	}
-	
 }
 
 void cal_b(int *b, t_pslist** stack_b, int size_b)
@@ -299,28 +295,103 @@ void cal_b(int *b, t_pslist** stack_b, int size_b)
 	}
 }
 
-void print_moves(int*a, int*b, int size_b)
+int max (a, b)
 {
-	int index;
-	
-	index = 0;
-	ft_printf("a		b\n");
-	while(index < size_b)
-	{
-		ft_printf("%d		%d\n", a[index], b[index]);
-		index++;
-	}
+	if(a > b)
+		return(a);
+	return(b);
 }
 
-
-void	cal_best_move(int*a, int*b, int size_b)
+int min (a, b)
 {
-	// int index;
+	if (a < b)
+		return(a);
+	return(b);
+}
 
-	// index = 0;
-	// while (index)
+int	best_move_index(int *move_cost, int size_b)
+{
+	int index;
+	int value;
+	int ret_index;
+
+	index = 0;
+	value = move_cost[index];
+	ret_index = 0;
+	while(index < size_b)
+	{
+		if (move_cost[index] < value)
+		{
+			value = move_cost[index];
+			ret_index = index;
+		}
+		index++;
+	}
+	return(ret_index);
+}
+
+int	cal_best_move_index(int*a, int*b, int size_b)
+{
+	int index;
+	int *move_cost;
+	int move_index;
+
+	index = 0;
+	move_cost = malloc(sizeof(int) * size_b);
 	print_moves(a, b, size_b);
+	if (move_cost == NULL)
+		exit(EXIT_FAILURE);
+	while (index < size_b)
+	{
+		if (a[index] >= 0 && b[index] >= 0)
+			move_cost[index] = max(a[index], b[index]);
+		if (a[index] < 0 && b[index] >= 0)
+			move_cost[index] = (a[index] * -1) + b[index];
+		if (a[index] >= 0 && b[index] < 0)
+			move_cost[index] =  a[index] + (b[index] * -1);
+		if (a[index] < 0 && b[index] < 0)
+			move_cost[index] =  min(a[index], b[index]) * -1;
+		index++;
+	}
+	for (int i = 0; i < size_b; i++)
+	{
+		ft_printf("move_cost: %d\n", move_cost[i]);
+	}
+	move_index = best_move_index(move_cost, size_b);
+	free(move_cost); 
+	return (move_index);
+}
 
+void execute_move(t_pslist **stack_a, t_pslist **stack_b, int *a, int *b, int move_index)
+{
+	if(a[move_index] == 0 && b[move_index] == 0)
+		push(stack_a, stack_b, pa);
+	if(a[move_index] > 0 && b[move_index] > 0)
+		rrotate(stack_a, stack_b);
+	if(a[move_index] > 1 && b[move_index] == 0)
+		rotate(stack_a, ra);
+	if(a[move_index] == 0 && b[move_index] > 0)
+		rotate(stack_b, rb);
+	if(a[move_index] < 0 && b[move_index] < 0)
+		rev_rrotate(stack_a, stack_b);
+	if(a[move_index] < 0 && b[move_index] == 0)
+		rev_rotate(stack_a, rra);
+	if(a[move_index] == 0 && b[move_index] < 0)
+		rev_rotate(stack_a, rrb);
+	if(a[move_index] < 0 && b[move_index] > 0)
+	{
+		if ((a[move_index] * -1) > b[move_index])
+			rev_rotate(stack_a, rra);
+		else
+			rev_rotate(stack_b, rrb);
+	}
+	if(a[move_index] > 0 && b[move_index] < 0)
+	{
+		if (a[move_index] > (b[move_index]) * -1)
+			rev_rotate(stack_b, rrb);
+		else
+			rev_rotate(stack_a, rra);
+	}
 }
 
 void	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
@@ -329,6 +400,7 @@ void	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 	int *b;
 	int size_a;
 	int size_b;
+	int move_index;
 
 	size_a = ps_lstsize((*stack_a));
 	size_b = ps_lstsize((*stack_b));
@@ -336,9 +408,10 @@ void	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 	b = malloc(sizeof(int) * size_b);
 	if (a == NULL || b == NULL)
 		exit(EXIT_FAILURE);
-	cal_a(a, stack_a, stack_b, size_a, size_b);
+	cal_a(a, stack_a, stack_b, size_a);
 	cal_b(b, stack_b, size_b);
-	cal_best_move(a, b, size_b);
+	move_index = cal_best_move_index(a, b, size_b);
+	execute_move(stack_a, stack_b, a, b, move_index);
 }
 
 void recurse_cal_sort(t_pslist **stack_a, t_pslist **stack_b)
@@ -357,13 +430,15 @@ void recurse_cal_sort(t_pslist **stack_a, t_pslist **stack_b)
 
 	lis(stack_a);
 	max -= push_b_lis(stack_a, stack_b, ps_lstsize((*stack_a)));
+	print_stack(stack_a, 'a');
+	print_stack(stack_b, 'b');
 	cal_moves(stack_a, stack_b);
 
 
 
 	ft_printf("max: %d\n", max);
 	ft_printf("end\n----------\n");
-	print_index_lis_stack(stack_a, 'a');
+	print_stack(stack_a, 'a');
 	print_stack(stack_b, 'b');
 	ft_printf("----------\n");
 }

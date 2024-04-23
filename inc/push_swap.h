@@ -164,5 +164,6 @@ void ss_swap(int* xp, int* yp);
 void print_index_lds_stack(t_pslist	**stack, char name);
 void print_index_lis_stack(t_pslist	**stack, char name);
 int calc_max(t_pslist**stack_a);
+void print_moves(int*a, int*b, int size_b);
 
 #endif
