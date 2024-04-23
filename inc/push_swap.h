@@ -10,6 +10,7 @@ typedef struct s_pslist
 	int				rrank;
 	int 			index;
 	int 			lds;
+	int				lis;
 	struct s_pslist	*next;
 }	t_pslist;
 
@@ -146,6 +147,7 @@ void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
 void radix(t_pslist	**stack_a, t_pslist	**stack_b);
 void minimal_edit(t_pslist **stack_a, t_pslist **stack_b);
 void recurse_sort(t_pslist **stack_a, t_pslist **stack_b);
+void recurse_cal_sort(t_pslist **stack_a, t_pslist **stack_b);
 
 //utils
 int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
@@ -160,5 +162,7 @@ void init_c(t_pslist **stack_a, int *stack_c);
 void selectionSort(int arr[], int n);
 void ss_swap(int* xp, int* yp);
 void print_index_lds_stack(t_pslist	**stack, char name);
+void print_index_lis_stack(t_pslist	**stack, char name);
+int calc_max(t_pslist**stack_a);
 
 #endif
