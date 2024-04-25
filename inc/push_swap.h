@@ -145,13 +145,28 @@ void un_push_np(t_pslist **stack_2, t_pslist **stack_1);
 void	un_swap_np(t_pslist** stack);
 void	un_sswap_np(t_pslist** stack_a, t_pslist** stack_b);
 //algorithmes
+
 void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
 void radix(t_pslist	**stack_a, t_pslist	**stack_b);
 void minimal_edit(t_pslist **stack_a, t_pslist **stack_b);
 void recurse_sort(t_pslist **stack_a, t_pslist **stack_b);
-void recurse_cal_sort(t_pslist **stack_a, t_pslist **stack_b);
+void cal_sort(t_pslist **stack_a, t_pslist **stack_b);
+
+//lis 
+
+void is(int *stack_c, int *lis, int len);
+void init_lis_stack(t_pslist **stack_a);
+void init_lis(t_pslist **stack_a, int *lis, int len);
+void lis(t_pslist**stack_a);
+int push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n);
+
+//calculate
+
+void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a);
+void cal_b(int *b, t_pslist** stack_b, int size_b);
 
 //utils
+
 int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
 int check_n_sorted(t_pslist	**stack_a, int n,const char flag);
 void print_stack(t_pslist	**stack, char name);
@@ -167,5 +182,8 @@ void print_index_lds_stack(t_pslist	**stack, char name);
 void print_index_lis_stack(t_pslist	**stack, char name);
 int calc_max(t_pslist**stack_a);
 void print_moves(int*a, int*b, int size_b);
+int maxnum(t_pslist **stack_a);
+int max (int a, int b);
+int min (int a, int b);
 
 #endif
