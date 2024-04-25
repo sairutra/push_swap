@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lis.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/25 14:32:59 by spenning          #+#    #+#             */
+/*   Updated: 2024/04/25 14:38:21 by spenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
-void is(int *stack_c, int *lis, int len)
+void	is(int *stack_c, int *lis, int len)
 {
-	int index;
-	int inner_index;
-	int value;
+	int	index;
+	int	inner_index;
+	int	value;
 
 	index = len;
 	inner_index = index;
 	while (index >= 0)
 	{
 		value = stack_c[index];
-		while(inner_index <= len)
+		while (inner_index <= len)
 		{
-			if(stack_c[inner_index] > value)
+			if (stack_c[inner_index] > value)
 			{
 				value = stack_c[inner_index];
 				lis[index] += 1;
@@ -25,16 +37,15 @@ void is(int *stack_c, int *lis, int len)
 	}
 }
 
-
-void init_lis_stack(t_pslist **stack_a)
+void	init_lis_stack(t_pslist **stack_a)
 {
-	t_pslist *temp;
-	int	val;
-	
+	t_pslist	*temp;
+	int			val;
+
 	temp = *stack_a;
 	temp->lis = 1;
 	val = temp->content;
-	while(temp != NULL)
+	while (temp != NULL)
 	{
 		if (temp->content > val)
 		{
@@ -45,20 +56,20 @@ void init_lis_stack(t_pslist **stack_a)
 	}
 }
 
-void init_lis(t_pslist **stack_a, int *lis, int len)
+void	init_lis(t_pslist **stack_a, int *lis, int len)
 {
-	int index;
-	int max;
-	int index_of_max;
-	t_pslist *temp = (*stack_a);
+	int			index;
+	int			max;
+	int			index_of_max;
+	t_pslist	*temp;
 
+	temp = (*stack_a);
 	index = 0;
-	(void)stack_a;
 	max = lis[0];
 	index_of_max = 0;
-	while(index <= len)
+	while (index <= len)
 	{
-		if(lis[index] > max)
+		if (lis[index] > max)
 		{
 			max = lis[index];
 			index_of_max = index;
@@ -73,34 +84,35 @@ void init_lis(t_pslist **stack_a, int *lis, int len)
 	init_lis_stack(&temp);
 }
 
-void lis(t_pslist**stack_a)
+int	lis(t_pslist**stack_a)
 {
-	int *stack_c;
-	int *lis;
-	int len;
+	int	*stack_c;
+	int	*lis;
+	int	len;
 
 	len = ps_lstsize((*stack_a)) - 1;
 	lis = malloc(sizeof(int) * len);
 	if (lis == NULL)
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	stack_c = malloc(sizeof(int) * ps_lstsize((*stack_a)));
 	init_c(stack_a, stack_c);
 	is(stack_c, lis, len);
 	free(stack_c);
 	init_lis(stack_a, lis, len);
 	free(lis);
+	return (EXIT_SUCCESS);
 }
 
-int push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n)
+int	push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n)
 {
-	int index;
-	int moves;
+	int	index;
+	int	moves;
 
 	moves = 0;
 	index = 0;
-	while(index < n)
+	while (index < n)
 	{
-		if((*stack_a)->lis == 0)
+		if ((*stack_a)->lis == 0)
 		{
 			push(stack_a, stack_b, pa);
 			moves++;
@@ -110,7 +122,7 @@ int push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n)
 			rotate(stack_a, ra);
 			moves++;
 		}
-			index++;
+		index++;
 	}
-	return(moves);
+	return (moves);
 }

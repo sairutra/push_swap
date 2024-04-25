@@ -148,16 +148,12 @@ void	un_sswap_np(t_pslist** stack_a, t_pslist** stack_b);
 
 void	bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
 void	radix(t_pslist	**stack_a, t_pslist	**stack_b);
-void	minimal_edit(t_pslist **stack_a, t_pslist **stack_b);
 void	recurse_sort(t_pslist **stack_a, t_pslist **stack_b);
 int		cal_sort(t_pslist **stack_a, t_pslist **stack_b);
 
 //lis 
 
-void is(int *stack_c, int *lis, int len);
-void init_lis_stack(t_pslist **stack_a);
-void init_lis(t_pslist **stack_a, int *lis, int len);
-void lis(t_pslist**stack_a);
+int lis(t_pslist**stack_a);
 int push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n);
 
 //calculate

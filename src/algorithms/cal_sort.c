@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:55:07 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/25 13:20:49 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/25 14:38:30 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	cal_sort(t_pslist **stack_a, t_pslist **stack_b)
 	int	ret;
 
 	len = ps_lstsize((*stack_a));
-	lis(stack_a);
+	if(lis(stack_a))
+		return(EXIT_FAILURE);
 	ret = 0;
 	push_b_lis(stack_a, stack_b, ps_lstsize((*stack_a)));
 	while (!check_n_sorted(stack_a, len, '+'))
