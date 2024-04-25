@@ -104,7 +104,6 @@ void	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 
 void cal_sort(t_pslist **stack_a, t_pslist **stack_b)
 {
-	int max;
 	int len;
 
 	len = ps_lstsize((*stack_a));
