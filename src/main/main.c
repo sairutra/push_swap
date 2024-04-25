@@ -23,7 +23,9 @@ int main (int argc, char **argv)
 	if(create_stack(&stack_a, argv))
 		exit(EXIT_FAILURE);
 	// bubble_sort(&stack_a, &stack_b);
-	cal_sort(&stack_a, &stack_b);
+	
+	if(cal_sort(&stack_a, &stack_b))
+		ft_printf("malloc failed in cal_sort.cal_moves");
 	ps_lstclear(&stack_a);
 	ps_lstclear(&stack_b);
 	return(0);

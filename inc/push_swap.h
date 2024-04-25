@@ -146,11 +146,11 @@ void	un_swap_np(t_pslist** stack);
 void	un_sswap_np(t_pslist** stack_a, t_pslist** stack_b);
 //algorithmes
 
-void bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
-void radix(t_pslist	**stack_a, t_pslist	**stack_b);
-void minimal_edit(t_pslist **stack_a, t_pslist **stack_b);
-void recurse_sort(t_pslist **stack_a, t_pslist **stack_b);
-void cal_sort(t_pslist **stack_a, t_pslist **stack_b);
+void	bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
+void	radix(t_pslist	**stack_a, t_pslist	**stack_b);
+void	minimal_edit(t_pslist **stack_a, t_pslist **stack_b);
+void	recurse_sort(t_pslist **stack_a, t_pslist **stack_b);
+int		cal_sort(t_pslist **stack_a, t_pslist **stack_b);
 
 //lis 
 

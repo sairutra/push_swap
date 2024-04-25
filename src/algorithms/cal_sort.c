@@ -30,7 +30,7 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 	index = 0;
 	move_cost = malloc(sizeof(int) * size_b);
 	if (move_cost == NULL)
-		exit(EXIT_FAILURE);
+		return(-1);
 	while (index < size_b)
 	{
 		if (a[index] >= 0 && b[index] >= 0)
@@ -80,7 +80,7 @@ void execute_move(t_pslist **stack_a, t_pslist **stack_b, int *a, int *b, int mo
 	}
 }
 
-void	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
+int	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 {
 	int *a;
 	int *b;
@@ -93,24 +93,38 @@ void	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 	a = malloc(sizeof(int) * size_b);
 	b = malloc(sizeof(int) * size_b);
 	if (a == NULL || b == NULL)
-		exit(EXIT_FAILURE);
+		return(-1);
 	cal_a(a, stack_a, stack_b, size_a);
 	cal_b(b, stack_b, size_b);
 	move_index = cal_best_move_index(a, b, size_b);
+	if(move_index == -1)
+	{
+		free(a);
+		free(b);
+		return(-1);
+	}
 	execute_move(stack_a, stack_b, a, b, move_index);
 	free(a);
 	free(b);
+	return(0);
 }
 
-void cal_sort(t_pslist **stack_a, t_pslist **stack_b)
+int cal_sort(t_pslist **stack_a, t_pslist **stack_b)
 {
 	int len;
+	int ret;
 
 	len = ps_lstsize((*stack_a));
 	lis(stack_a);
+	ret = 0;
 	push_b_lis(stack_a, stack_b, ps_lstsize((*stack_a)));
 	while (!check_n_sorted(stack_a, len, '+'))
-		cal_moves(stack_a, stack_b);
+	{	
+		ret = cal_moves(stack_a, stack_b);
+		if (ret == -1)
+			return(EXIT_FAILURE);
+	}
+	return(EXIT_SUCCESS);
 }
 
 
