@@ -165,6 +165,11 @@ int push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n);
 void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a);
 void cal_b(int *b, t_pslist** stack_b, int size_b);
 
+//move 
+
+void	execute_move(t_pslist **sa, t_pslist **sb, int a, int b);
+
+
 //utils
 
 int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
