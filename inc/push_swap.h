@@ -186,5 +186,6 @@ void print_moves(int*a, int*b, int size_b);
 int maxnum(t_pslist **stack_a);
 int max (int a, int b);
 int min (int a, int b);
+void free2(void *f1, void *f2);
 
 #endif

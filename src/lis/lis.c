@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:32:59 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/25 15:55:08 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:08:13 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n)
 	{
 		if ((*stack_a)->lis == 0)
 		{
-			push(stack_a, stack_b, pa);
+			push(stack_a, stack_b, pb);
 			moves++;
 		}
 		else

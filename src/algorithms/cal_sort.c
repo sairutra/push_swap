@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:55:07 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/25 16:57:10 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:06:48 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 	int	move_index;
 
 	index = 0;
-	if(a == NULL || b == NULL)
+	if(size_b == 0)
 		return(0);
 	move_cost = ft_calloc(sizeof(int), size_b);
 	if (move_cost == NULL)
@@ -62,6 +62,14 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 	return (move_index);
 }
 
+void	rotate_a(t_pslist **sa)
+{
+	// calculate what the shortest route is ra or rra
+	while (!check_n_sorted(sa, ps_lstsize((*sa)), '+'))
+		rotate(sa, ra);
+}
+
+
 int	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 {
 	int	*a;
@@ -79,19 +87,16 @@ int	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 	cal_a(a, stack_a, stack_b, size_a);
 	cal_b(b, stack_b, size_b);
 	move_index = cal_best_move_index(a, b, size_b);
-	print_moves(a, b, size_b);
-	ft_printf("move_index: %d\n", move_index);
 	if (move_index == -1)
 	{
-		free(a);
-		free(b);
+		free2(a, b);
 		return (-1);
 	}
-	execute_move(stack_a, stack_b, a[move_index], b[move_index]);
-	print_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
-	free(a);
-	free(b);
+	if ((*stack_b) == NULL)
+		rotate_a(stack_a);
+	else
+		execute_move(stack_a, stack_b, a[move_index], b[move_index]);
+	free2(a, b);
 	return (0);
 }
 
@@ -101,7 +106,8 @@ int	cal_sort(t_pslist **stack_a, t_pslist **stack_b)
 	int	ret;
 
 	len = ps_lstsize((*stack_a));
-	if(lis(stack_a))
+	ret = lis(stack_a); 
+	if(ret)
 		return(EXIT_FAILURE);
 	ret = 0;
 	push_b_lis(stack_a, stack_b, ps_lstsize((*stack_a)));
