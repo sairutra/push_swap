@@ -117,6 +117,22 @@ int push_b_lis(t_pslist **stack_a, t_pslist **stack_b, int n)
 }
 
 
+int maxnum(t_pslist **stack_a)
+{
+	t_pslist	*temp;
+	int			max;
+
+	temp = (*stack_a);
+	max = temp->content;
+	while (temp != NULL)
+	{
+		if (temp->content > max)
+			max = temp->content;
+		temp = temp->next;
+	}
+	return(max);
+}
+
 
 void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a)
 {
@@ -144,7 +160,22 @@ void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a)
 				break;
 			// if(temp_a->next != NULL)
 				// ft_printf("temp_a->next->content %d\n", temp_a->next->content);
-			if (temp_b->content < temp_a->content && index == 0)
+			// if stack_b first node is smaller than stack_a first node and last node in stack_a is also smaller than stack_b first node 
+			if (temp_b->content < temp_a->content && ps_lstlast((*stack_a))->content < temp_b->content && index == 0)
+			{
+				index = 0;
+				break;
+			}
+			// if stack_b first node is bigger than maximum of stack_a and max stack_a is on last node
+			if (ps_lstlast((*stack_a))->content == maxnum(stack_a) && temp_b->content > ps_lstlast((*stack_a))->content)
+			{
+				index = 0;
+				break;
+			}
+			// if (temp_b->content > temp_a ->content && temp_a->content == maxnum(stack_a) && index != 0)
+			// 	break;
+			// if first node in stack_b is between biggest in stack_a (last) and smallest in stack_a (first node) 
+			if (temp_b->content < temp_a->content &&  index == 0 && ps_lstlast((*stack_a))->content == maxnum(stack_a))
 			{
 				index = 0;
 				break;
@@ -251,6 +282,7 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 	// 	ft_printf("move_cost: %d\n", move_cost[i]);
 	// }
 	move_index = best_move_index(move_cost, size_b);
+	// ft_printf("move index: %d\n", move_index);
 	free(move_cost); 
 	return (move_index);
 }
