@@ -161,25 +161,26 @@ void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a)
 			// if(temp_a->next != NULL)
 				// ft_printf("temp_a->next->content %d\n", temp_a->next->content);
 			// if stack_b first node is smaller than stack_a first node and last node in stack_a is also smaller than stack_b first node 
-			if (temp_b->content < temp_a->content && ps_lstlast((*stack_a))->content < temp_b->content && index == 0)
+			if (temp_b->content < temp_a->content && ps_lstlast((*stack_a))->content < temp_b->content ) // && index == 0
 			{
-				index = 0;
+				// index = 0;
 				break;
 			}
 			// if stack_b first node is bigger than maximum of stack_a and max stack_a is on last node
 			if (ps_lstlast((*stack_a))->content == maxnum(stack_a) && temp_b->content > ps_lstlast((*stack_a))->content)
 			{
-				index = 0;
+				// index = 0;
 				break;
 			}
 			// if (temp_b->content > temp_a ->content && temp_a->content == maxnum(stack_a) && index != 0)
 			// 	break;
 			// if first node in stack_b is between biggest in stack_a (last) and smallest in stack_a (first node) 
-			if (temp_b->content < temp_a->content &&  index == 0 && ps_lstlast((*stack_a))->content == maxnum(stack_a))
+			if (temp_b->content < temp_a->content &&  ps_lstlast((*stack_a))->content == maxnum(stack_a) ) // && index == 0
 			{
-				index = 0;
+				// index = 0;
 				break;
 			}
+			// if node_b is just before smaller and bigger node in stack_a
 			if (temp_a->content < temp_b->content && temp_b->content < temp_a->next->content)
 			{	
 				index++;
@@ -262,7 +263,7 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 
 	index = 0;
 	move_cost = malloc(sizeof(int) * size_b);
-	print_moves(a, b, size_b);
+	// print_moves(a, b, size_b);
 	if (move_cost == NULL)
 		exit(EXIT_FAILURE);
 	while (index < size_b)
@@ -289,8 +290,8 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 
 void execute_move(t_pslist **stack_a, t_pslist **stack_b, int *a, int *b, int move_index)
 {
-	print_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
+	// print_stack(stack_a, 'a');
+	// print_stack(stack_b, 'b');
 	if(a[move_index] == 0 && b[move_index] == 0)
 		push(stack_b, stack_a, pa);
 	if(a[move_index] > 0 && b[move_index] > 0)
