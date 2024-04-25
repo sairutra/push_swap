@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:15:31 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/25 13:15:32 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:45:07 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main (int argc, char **argv)
 	stack_a = NULL;
 	// (void)argv;
 	(void)argc;
-	argv = char_array_of_int(20, 0, 100);
+	argv = char_array_of_int(100, 0, 100);
 	// if (argc == 1)
 	// 	exit(EXIT_SUCCESS);
 	if (check_stack(argv))
@@ -38,7 +38,9 @@ int main (int argc, char **argv)
 	
 	if(cal_sort(&stack_a, &stack_b))
 		ft_printf("malloc failed in cal_sort.cal_moves");
+	print_stack(&stack_a, 'a');
 	ps_lstclear(&stack_a);
 	ps_lstclear(&stack_b);
+	free_char_array(argv, 10);
 	return(0);
 }

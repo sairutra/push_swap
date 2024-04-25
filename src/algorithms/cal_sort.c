@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:55:07 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/25 14:38:30 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:57:10 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 	int	move_index;
 
 	index = 0;
-	move_cost = malloc(sizeof(int) * size_b);
+	if(a == NULL || b == NULL)
+		return(0);
+	move_cost = ft_calloc(sizeof(int), size_b);
 	if (move_cost == NULL)
 		return (-1);
 	while (index < size_b)
@@ -70,13 +72,15 @@ int	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 
 	size_a = ps_lstsize((*stack_a));
 	size_b = ps_lstsize((*stack_b));
-	a = malloc(sizeof(int) * size_b);
-	b = malloc(sizeof(int) * size_b);
+	a = ft_calloc(sizeof(int), size_b);
+	b = ft_calloc(sizeof(int), size_b);
 	if (a == NULL || b == NULL)
 		return (-1);
 	cal_a(a, stack_a, stack_b, size_a);
 	cal_b(b, stack_b, size_b);
 	move_index = cal_best_move_index(a, b, size_b);
+	print_moves(a, b, size_b);
+	ft_printf("move_index: %d\n", move_index);
 	if (move_index == -1)
 	{
 		free(a);
@@ -84,6 +88,8 @@ int	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 		return (-1);
 	}
 	execute_move(stack_a, stack_b, a[move_index], b[move_index]);
+	print_stack(stack_a, 'a');
+	print_stack(stack_b, 'b');
 	free(a);
 	free(b);
 	return (0);
