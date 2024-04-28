@@ -1,32 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 18:39:00 by spenning          #+#    #+#             */
+/*   Updated: 2024/04/28 18:44:52 by spenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
-
-void ss_swap(int* xp, int* yp) 
-{ 
-    int temp = *xp; 
-    *xp = *yp; 
-    *yp = temp; 
-} 
-  
-void selectionSort(int arr[], int n) 
-{ 
-    int i, j, min_idx; 
-  
-    for (i = 0; i < n - 1; i++) { 
-        min_idx = i; 
-        for (j = i + 1; j < n; j++) 
-            if (arr[j] < arr[min_idx]) 
-                min_idx = j; 
-  
-        ss_swap(&arr[min_idx], &arr[i]); 
-    } 
-} 
-
-
-void init_c(t_pslist **stack_a, int *stack_c)
+void	ss_swap(int *xp, int *yp)
 {
-	t_pslist *temp;
-	int      index;
+	int	temp;
+
+	temp = *xp;
+	*xp = *yp;
+	*yp = temp;
+}
+
+void	selection_sort(int arr[], int n)
+{
+	int	i;
+	int	j;
+	int	min_idx;
+
+	i = 0;
+	while (i < n)
+	{
+		min_idx = i;
+		j = i + 1;
+		while (j < n)
+		{
+			if (arr[j] < arr[min_idx])
+				min_idx = j;
+			j++;
+		}
+		ss_swap(&arr[min_idx], &arr[i]);
+		i++;
+	}
+}
+
+void	init_c(t_pslist **stack_a, int *stack_c)
+{
+	t_pslist	*temp;
+	int			index;
 
 	index = 0;
 	temp = (*stack_a);
@@ -39,13 +59,13 @@ void init_c(t_pslist **stack_a, int *stack_c)
 	index = 0;
 }
 
-void init_index(t_pslist **stack_a, int *stack_c, int len)
+void	init_index(t_pslist **stack_a, int *stack_c, int len)
 {
-	t_pslist *temp;
-	int      index;
+	t_pslist	*temp;
+	int			index;
 
 	index = 0;
-	while(index < len)
+	while (index < len)
 	{
 		temp = (*stack_a);
 		while (temp != NULL)
@@ -53,7 +73,7 @@ void init_index(t_pslist **stack_a, int *stack_c, int len)
 			if (stack_c[index] == temp->content)
 			{
 				temp->index = index;
-				break;
+				break ;
 			}
 			else
 				temp = temp->next;
@@ -62,22 +82,16 @@ void init_index(t_pslist **stack_a, int *stack_c, int len)
 	}
 }
 
-void sort_index(t_pslist **stack_a)
+void	sort_index(t_pslist **stack_a)
 {
-	int *stack_c;
-	int len;
+	int	*stack_c;
+	int	len;
 
 	len = ps_lstsize((*stack_a));
 	stack_c = malloc(sizeof(int) * len);
 	if (stack_c == NULL)
 		exit(EXIT_FAILURE);
 	init_c(stack_a, stack_c);
-	selectionSort(stack_c, len);
+	selection_sort(stack_c, len);
 	init_index(stack_a, stack_c, len);
-	for (int i = 0; i < len; i++)
-	{
-		ft_printf("stack c: %d\n", stack_c[i]);
-	}
-	print_index_stack(stack_a, 'a');
-	
 }
