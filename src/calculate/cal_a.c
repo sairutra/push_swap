@@ -1,45 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cal_a.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 17:45:13 by spenning          #+#    #+#             */
+/*   Updated: 2024/04/28 18:03:46 by spenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
-void cal_a(int *a, t_pslist** stack_a, t_pslist** stack_b, int size_a)
+int	check_ta(t_pslist *ta, t_pslist *tb, t_pslist *last)
 {
-	int half;
-	int index;
-	int b_index;
-	t_pslist* temp_a;
-	t_pslist* temp_b;
+	int	index;
+
+	index = 0;
+	while (ta != NULL)
+	{
+		if (ta->next == NULL)
+			break ;
+		if (tb->content < ta->content && last->content < tb->content)
+			break ;
+		if (last->content == maxnum(sa) && tb->content > last->content)
+			break ;
+		if (tb->content < ta->content && lst->content == maxnum(sa))
+			break ;
+		if (lst->content < tb->content && tb->content < ta->content)
+			break ;
+		index++;
+		ta = ta->next;
+	}
+	return (index);
+}
+
+void	cal_a(int *a, t_pslist	**sa, t_pslist	**sb, int size_a)
+{
+	int			half;
+	int			index;
+	int			b_index;
+	t_pslist	*ta;
+	t_pslist	*tb;
 
 	half = size_a / 2;
 	b_index = 0;
 	index = 0;
-	temp_a = (*stack_a);
-	temp_b = (*stack_b);
-	while (temp_b != NULL)
+	ta = (*sa);
+	tb = (*sb);
+	while (tb != NULL)
 	{
-		while (temp_a != NULL)
-		{
-			if(temp_a->next == NULL)
-				break;
-			if (temp_b->content < temp_a->content && ps_lstlast((*stack_a))->content < temp_b->content ) // && index == 0
-				break;
-			if (ps_lstlast((*stack_a))->content == maxnum(stack_a) && temp_b->content > ps_lstlast((*stack_a))->content)
-				break;
-			if (temp_b->content < temp_a->content &&  ps_lstlast((*stack_a))->content == maxnum(stack_a) ) // && index == 0
-				break;
-			if (temp_a->content < temp_b->content && temp_b->content < temp_a->next->content)
-			{	
-				index++;
-				break;
-			}
-			index++;
-			temp_a = temp_a->next;
-		}
-		temp_a = (*stack_a);
+		index = check_ta(ta, tb, ps_lstlast((*sa)));
+		ta = (*sa);
 		if (index > half)
 			a[b_index] = index - size_a ;
 		else
 			a[b_index] = index;
 		index = 0;
 		b_index++;
-		temp_b = temp_b->next;
+		tb = tb->next;
 	}
 }
