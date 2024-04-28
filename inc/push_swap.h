@@ -166,6 +166,12 @@ void cal_b(int *b, t_pslist** stack_b, int size_b);
 void	execute_move(t_pslist **sa, t_pslist **sb, int a, int b);
 
 
+//recurse
+int	recurse_rotate(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
+int	recurse_push(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
+int	recurse_swap(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
+int	recurse(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
+
 //utils
 
 int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
