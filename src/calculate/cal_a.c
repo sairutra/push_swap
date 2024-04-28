@@ -6,13 +6,13 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:45:13 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/28 18:03:46 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/28 19:58:18 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	check_ta(t_pslist *ta, t_pslist *tb, t_pslist *last)
+int	check_ta(t_pslist *ta, t_pslist *tb, t_pslist *last, t_pslist	**sa)
 {
 	int	index;
 
@@ -25,9 +25,9 @@ int	check_ta(t_pslist *ta, t_pslist *tb, t_pslist *last)
 			break ;
 		if (last->content == maxnum(sa) && tb->content > last->content)
 			break ;
-		if (tb->content < ta->content && lst->content == maxnum(sa))
+		if (tb->content < ta->content && last->content == maxnum(sa))
 			break ;
-		if (lst->content < tb->content && tb->content < ta->content)
+		if (last->content < tb->content && tb->content < ta->content)
 			break ;
 		index++;
 		ta = ta->next;
@@ -50,7 +50,7 @@ void	cal_a(int *a, t_pslist	**sa, t_pslist	**sb, int size_a)
 	tb = (*sb);
 	while (tb != NULL)
 	{
-		index = check_ta(ta, tb, ps_lstlast((*sa)));
+		index = check_ta(ta, tb, ps_lstlast((*sa)), sa);
 		ta = (*sa);
 		if (index > half)
 			a[b_index] = index - size_a ;
