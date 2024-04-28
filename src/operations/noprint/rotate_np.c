@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_np.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 18:19:31 by spenning          #+#    #+#             */
+/*   Updated: 2024/04/28 18:19:59 by spenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../inc/push_swap.h"
 
-void rotate_np(t_pslist **stack)
+void	rotate_np(t_pslist **stack)
 {
 	t_pslist	*first;
 	t_pslist	*second;
@@ -11,13 +23,13 @@ void rotate_np(t_pslist **stack)
 	last = ps_lstlast((*stack));
 	lstsize = ps_lstsize((*stack));
 	if (lstsize <= 1)
-		return;
+		return ;
 	if (lstsize == 2)
 	{
 		(*stack) = last;
 		last->next = first;
 		(*stack)->next->next = NULL;
-		return;
+		return ;
 	}
 	second = first->next;
 	(*stack) = second;
@@ -25,20 +37,18 @@ void rotate_np(t_pslist **stack)
 	first->next = NULL;
 }
 
-void rrotate_np(t_pslist **stack_a, t_pslist **stack_b)
+void	rrotate_np(t_pslist **stack_a, t_pslist **stack_b)
 {
 	rotate_np(stack_a);
 	rotate_np(stack_b);
 }
 
-
-void un_rotate_np(t_pslist **stack)
+void	un_rotate_np(t_pslist **stack)
 {
 	rev_rotate_np(stack);
 }
 
-
-void un_rrotate_np(t_pslist **stack_a, t_pslist **stack_b)
+void	un_rrotate_np(t_pslist **stack_a, t_pslist **stack_b)
 {
 	rev_rrotate_np(stack_a, stack_b);
 }

@@ -1,45 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/28 18:14:08 by spenning          #+#    #+#             */
+/*   Updated: 2024/04/28 18:14:55 by spenning         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
-void rotate_print(int print)
+void	rotate_print(int print)
 {
-	if(print == ra)
+	if (print == ra)
 		ft_printf("ra\n");
-	if(print == rb)
-		ft_printf("rb\n");	
+	if (print == rb)
+		ft_printf("rb\n");
 }
 
-
-void rotate(t_pslist **stack, int print)
+void	rotate(t_pslist **stack, int print)
 {
 	t_pslist	*first;
 	t_pslist	*second;
 	t_pslist	*last;
-	// t_pslist	*second_last;
 	int			lstsize;
 
 	first = (*stack);
 	last = ps_lstlast((*stack));
 	lstsize = ps_lstsize((*stack));
 	if (lstsize <= 1)
-		return;
+		return ;
 	if (lstsize == 2)
 	{
 		(*stack) = last;
 		last->next = first;
 		(*stack)->next->next = NULL;
 		rotate_print(print);
-		return;
+		return ;
 	}
-	// second_last = ps_lst_second_last((*stack));
 	second = first->next;
 	(*stack) = second;
 	last->next = first;
-	// second_last->next = first;
 	first->next = NULL;
 	rotate_print(print);
 }
 
-void rrotate(t_pslist **stack_a, t_pslist **stack_b)
+void	rrotate(t_pslist **stack_a, t_pslist **stack_b)
 {
 	ft_printf("rr\n");
 	rotate(stack_a, rr);
