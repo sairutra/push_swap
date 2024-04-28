@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 12:55:07 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/25 19:06:48 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/28 16:38:13 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 	int	move_index;
 
 	index = 0;
-	if(size_b == 0)
-		return(0);
+	if (size_b == 0)
+		return (0);
 	move_cost = ft_calloc(sizeof(int), size_b);
 	if (move_cost == NULL)
 		return (-1);
@@ -62,29 +62,26 @@ int	cal_best_move_index(int*a, int*b, int size_b)
 	return (move_index);
 }
 
+// calculate what the shortest route is ra or rra
 void	rotate_a(t_pslist **sa)
 {
-	// calculate what the shortest route is ra or rra
 	while (!check_n_sorted(sa, ps_lstsize((*sa)), '+'))
 		rotate(sa, ra);
 }
-
 
 int	cal_moves(t_pslist **stack_a, t_pslist **stack_b)
 {
 	int	*a;
 	int	*b;
-	int	size_a;
 	int	size_b;
 	int	move_index;
 
-	size_a = ps_lstsize((*stack_a));
 	size_b = ps_lstsize((*stack_b));
 	a = ft_calloc(sizeof(int), size_b);
 	b = ft_calloc(sizeof(int), size_b);
 	if (a == NULL || b == NULL)
 		return (-1);
-	cal_a(a, stack_a, stack_b, size_a);
+	cal_a(a, stack_a, stack_b, ps_lstsize((*stack_a)));
 	cal_b(b, stack_b, size_b);
 	move_index = cal_best_move_index(a, b, size_b);
 	if (move_index == -1)
@@ -106,9 +103,9 @@ int	cal_sort(t_pslist **stack_a, t_pslist **stack_b)
 	int	ret;
 
 	len = ps_lstsize((*stack_a));
-	ret = lis(stack_a); 
-	if(ret)
-		return(EXIT_FAILURE);
+	ret = lis(stack_a);
+	if (ret)
+		return (EXIT_FAILURE);
 	ret = 0;
 	push_b_lis(stack_a, stack_b, ps_lstsize((*stack_a)));
 	while (!check_n_sorted(stack_a, len, '+'))
