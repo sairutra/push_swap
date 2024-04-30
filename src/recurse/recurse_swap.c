@@ -6,36 +6,36 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 19:36:14 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/28 19:38:59 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:39:12 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	recurse_swap(int max, t_pslist**sa, t_pslist **sb, int *moves, int size)
+int	recurse_swap(int max, t_pslist **stacks[], t_moves **moves, int size)
 {
 	int	succesful;
 
-	moves[max -1] = nm;
-	un_rev_rrotate_np(sa, sb);
-	swap_np(sa);
-	moves[max] = msa;
-	succesful = recurse(max - 1, sa, sb, moves, size);
+	mv_dellast(moves);
+	un_rev_rrotate_np(stacks[stacka], stacks[stackb]);
+	swap_np(stacks[stacka]);
+	mv_lstadd_back(moves, mv_lstnew(msa));
+	succesful = recurse(max - 1, stacks, moves, size);
 	if (!succesful)
 	{
-		moves[max -1] = nm;
-		un_swap_np(sa);
-		swap_np(sb);
-		moves[max] = msb;
-		succesful = recurse(max - 1, sa, sb, moves, size);
+		mv_dellast(moves);
+		un_swap_np(stacks[stacka]);
+		swap_np(stacks[stackb]);
+		mv_lstadd_back(moves, mv_lstnew(msb));
+		succesful = recurse(max - 1, stacks, moves, size);
 	}
 	if (!succesful)
 	{
-		moves[max -1] = nm;
-		un_swap_np(sb);
-		sswap_np(sa, sb);
-		moves[max] = mss;
-		succesful = recurse(max - 1, sa, sb, moves, size);
+		mv_dellast(moves);
+		un_swap_np(stacks[stackb]);
+		sswap_np(stacks[stacka], stacks[stackb]);
+		mv_lstadd_back(moves, mv_lstnew(mss));
+		succesful = recurse(max - 1, stacks, moves, size);
 	}
 	return (succesful);
 }

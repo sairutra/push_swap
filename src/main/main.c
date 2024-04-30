@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:15:31 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/28 20:05:30 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:22:23 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main (int argc, char **argv)
 	stack_a = NULL;
 	// (void)argv;
 	// (void)argc;
-	// argv = char_array_of_int(500, 0, 500);
+	// argv = char_array_of_int(5, 0, 5);
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
 	// if (check_stack(argv))
@@ -32,11 +32,13 @@ int main (int argc, char **argv)
 	}
 	if(create_stack(&stack_a, argv))
 		exit(EXIT_FAILURE);
-	if(cal_sort(&stack_a, &stack_b))
-		ft_printf("malloc failed in cal_sort.cal_moves");
-	// print_stack(&stack_a, 'a');
+	if(ps_lstsize(stack_a) < 6)
+		recurse_sort(&stack_a, &stack_b);
+	else
+		if(cal_sort(&stack_a, &stack_b))
+			ft_printf("malloc failed in cal_sort.cal_moves");
 	ps_lstclear(&stack_a);
 	ps_lstclear(&stack_b);
-	// free_char_array(argv, 500);
+	// free_char_array(argv, 5);
 	return(0);
 }

@@ -16,7 +16,13 @@ typedef struct s_pslist
 	struct s_pslist	*next;
 }	t_pslist;
 
+typedef struct s_moves
+{
+	int				move;
+	struct s_moves	*next;
+}	t_moves;
 
+enum e_stack{stacka, stackb};
 enum e_swap{ss, sa, sb};
 enum e_push{pa, pb};
 enum e_rotate{ra, rb, rr};
@@ -82,6 +88,15 @@ t_pslist	*ps_lstlast(t_pslist	*lst);
 // If list only has two nodes it will return NULL.
 t_pslist	*ps_lst_second_last(t_pslist	*lst);
 
+void	mv_lstadd_front(t_moves	**lst, t_moves	*new);
+void	mv_lstadd_back(t_moves	**lst, t_moves	*new);
+t_moves	*mv_lst_second_last(t_moves	*lst);
+t_moves	*mv_lstlast(t_moves	*lst);
+void	mv_lstdelone(t_moves	*lst);
+void	mv_lstclear(t_moves	**lst);
+int	mv_lstsize(t_moves *lst);
+t_moves	*mv_lstnew(int content);
+void	mv_dellast(t_moves	**lst);
 
 // stack
 
@@ -167,11 +182,10 @@ void	execute_move(t_pslist **sa, t_pslist **sb, int a, int b);
 
 
 //recurse
-int	recurse_rotate(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
-int	recurse_push(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
-int	recurse_swap(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
-int	recurse(int max, t_pslist**sa, t_pslist **sb, int *moves, int size);
-
+int	recurse_rotate(int max, t_pslist** stacks[], t_moves **moves, int size);
+int	recurse_push(int max, t_pslist** stacks[], t_moves **moves, int size);
+int	recurse_swap(int max, t_pslist** stacks[], t_moves **moves, int size);
+int	recurse(int max, t_pslist** stacks[], t_moves **moves, int size);
 //utils
 
 int check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b);
@@ -193,5 +207,6 @@ int maxnum(t_pslist **stack_a);
 int max (int a, int b);
 int min (int a, int b);
 void free2(void *f1, void *f2);
+void	print_t_moves(t_moves **moves);
 
 #endif

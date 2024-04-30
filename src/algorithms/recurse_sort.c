@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:24:37 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/28 19:39:40 by spenning         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:36:46 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,47 +89,15 @@ int	push_b(t_pslist **stack_a, t_pslist **stack_b, int n)
 
 void	recurse_sort(t_pslist **stack_a, t_pslist **stack_b)
 {
-	int	max;
-	int	*moves;
+	int			max;
+	t_moves		*moves;
+	t_pslist	**stacks[2];
 
-	ft_printf("start\n----------\n");
-	print_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
-	ft_printf("----------\n");
+	stacks[0] = stack_a;
+	stacks[1] = stack_b;
 	sort_index(stack_a);
 	max = calc_max(stack_a);
-	ft_printf("max: %d\n", max);
-	moves = malloc(sizeof(int) * max);
-	if (moves == NULL)
-		exit(EXIT_FAILURE);
-
-	ft_printf("max: %d\n", max);
-	ft_printf("end\n----------\n");
-	print_index_lis_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
-	ft_printf("----------\n");
-	for (int i = max; i > 0; i--)
-	{
-		if(moves[i] == mpa)
-			ft_printf("pa\n");
-		if(moves[i] == mpb)
-			ft_printf("pb\n");
-		if(moves[i] == mra)
-			ft_printf("ra\n");
-		if(moves[i] == mrb)
-			ft_printf("rb\n");
-		if(moves[i] == mrr)
-			ft_printf("rr\n");
-		if(moves[i] == mrra)
-			ft_printf("rra\n");
-		if(moves[i] == mrrr)
-			ft_printf("rrr\n");
-		if(moves[i] == msa)
-			ft_printf("sa\n");
-		if(moves[i] == msb)
-			ft_printf("sb\n");
-		if(moves[i] == mss)
-			ft_printf("ss\n");
-	}
-
+	moves = mv_lstnew(nm);
+	recurse(max, stacks, &moves, ps_lstsize((*stack_a)));
+	print_t_moves(moves);
 }
