@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ndigits.c                                          :+:      :+:    :+:   */
+/*   print_index_stack_binary.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 18:32:05 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/02 15:12:27 by spenning         ###   ########.fr       */
+/*   Created: 2024/04/28 18:36:45 by spenning          #+#    #+#             */
+/*   Updated: 2024/05/02 14:17:03 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	get_digits(int value)
-{
-	int	ret;
+// void	print_binary(int content)
+// {
+// 	int index;
 
-	value = value / 10;
-	ret = 1;
-	if (value > 0)
-		ret += get_digits(value);
-	return (ret);
-}
+// 	index = 0;
+// 	ft_printf("binary: ");
+// 	while (index < 8)
+// 	{
+// 		ft_printf("%d", !!((content << index) & 0x80));
+// 		index++;
+// 	}
+// 	ft_printf("\n");
+// }
 
-int	ndigits(t_pslist *stack)
+
+void	print_index_stack_binary(t_pslist	**stack, char name)
 {
-	int			max_digits;
-	int			digits;
 	t_pslist	*temp;
 
-	max_digits = 0;
-	digits = 0;
-	temp = stack;
+	temp = (*stack);
+	ft_printf("stack: %c \n", name);
 	while (temp != NULL)
 	{
-		digits = get_digits(temp->binary);
-		if (digits > max_digits)
-			max_digits = digits;
+		ft_printf("content:%d index:%d binary:%d\n", temp->content, temp->index, temp->binary);
 		temp = temp->next;
 	}
-	return (max_digits);
 }
+

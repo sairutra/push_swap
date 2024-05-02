@@ -13,6 +13,7 @@ typedef struct s_pslist
 	int 			index;
 	int 			lds;
 	int				lis;
+	int				binary;
 	struct s_pslist	*next;
 }	t_pslist;
 
@@ -208,5 +209,6 @@ int max (int a, int b);
 int min (int a, int b);
 void free2(void *f1, void *f2);
 void	print_t_moves(t_moves **moves);
+void	print_index_stack_binary(t_pslist	**stack, char name);
 
 #endif
