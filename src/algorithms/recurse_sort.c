@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 17:24:37 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/30 17:36:46 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:32:18 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,5 @@ void	recurse_sort(t_pslist **stack_a, t_pslist **stack_b)
 	max = calc_max(stack_a);
 	moves = mv_lstnew(nm);
 	recurse(max, stacks, &moves, ps_lstsize((*stack_a)));
-	print_t_moves(moves);
+	print_t_moves(&moves);
 }
