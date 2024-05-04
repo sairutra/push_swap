@@ -6,46 +6,11 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 16:45:34 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 13:08:02 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:02:46 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
-
-int	power(int base, int exponent)
-{
-	int	result;
-
-	result = 1;
-	while (exponent > 0)
-	{
-		result = result * base;
-		exponent--;
-	}
-	return (result);
-}
-
-void	add_binary(t_pslist	**stack_a)
-{
-	int			index;
-	int			value;
-	t_pslist	*temp;
-
-	value = 0;
-	index = 0;
-	temp = (*stack_a);
-	while (temp != NULL)
-	{
-		while (index <= 32)
-		{
-			value = ((temp->index >> index) & 1) * power(10, index);
-			temp->binary += value;
-			index++;
-		}
-		index = 0;
-		temp = temp->next;
-	}
-}
 
 static int	get_max_bits(t_pslist **stack)
 {
@@ -75,8 +40,6 @@ void	radix(t_pslist	**stack_a, t_pslist	**stack_b)
 
 	index = 0;
 	inindex = 0;
-	sort_index(stack_a);
-	add_binary(stack_a);
 	size = ps_lstsize(*stack_a);
 	while (index < get_max_bits(stack_a))
 	{

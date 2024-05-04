@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 18:39:00 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/28 18:44:52 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:58:34 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void	sort_index(t_pslist **stack_a)
 	init_c(stack_a, stack_c);
 	selection_sort(stack_c, len);
 	init_index(stack_a, stack_c, len);
+	free(stack_c);
 }

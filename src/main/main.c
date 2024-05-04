@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:15:31 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 13:05:26 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:39:30 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ int	main(int argc, char **argv)
 	}
 	if (create_stack(&stack_a, argv))
 		exit(EXIT_FAILURE);
-	if (ps_lstsize(stack_a) < 6)
-		recurse_sort(&stack_a, &stack_b);
+	sort_index(&stack_a);
+	add_binary(&stack_a);
+	if (ps_lstsize(stack_a) <= 5)
+		sort_small(&stack_a, &stack_b);
 	else
 		radix(&stack_a, &stack_b);
 	ps_lstclear(&stack_a);

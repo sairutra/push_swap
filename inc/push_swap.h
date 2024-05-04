@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:09:32 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 14:08:36 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:36:08 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,14 +185,56 @@ t_pslist	*ps_lstlast(t_pslist	*lst);
 // If list only has two nodes it will return NULL.
 t_pslist	*ps_lst_second_last(t_pslist	*lst);
 
+// Function takes in a double pointer t_moves (lst) and a pointer
+// to a node to be added to the front of the list (new). new->next 
+// points to beginning of list and pointer of lst becomes new,
+// in order to become the new head. 
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 void		mv_lstadd_front(t_moves	**lst, t_moves	*new);
+// Function takes in a double pointer t_moves (lst) and a pointer
+// to a node to be added to the back of the list (new). Function
+// uses mv_lstlast function to find last node, if list is empty, 
+// then new will become new head, otherwise new is added to end of lst.
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 void		mv_lstadd_back(t_moves	**lst, t_moves	*new);
+// Function takes in a pointer t_moves (lst). It will return pointer t_moves
+// to the second to last node of the list. If list is empty it will return NULL.
+// If list only has two nodes it will return NULL.
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 t_moves		*mv_lst_second_last(t_moves	*lst);
+// Function takes in a pointer t_moves (lst). It will return pointer t_moves
+// to the last node of the list. If list is empty it will return NULL.
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 t_moves		*mv_lstlast(t_moves	*lst);
+// Function takes in a pointer t_moves (lst). It will put ->content to 0 
+// and frees lst.
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 void		mv_lstdelone(t_moves	*lst);
+// Function takes in a double pointer t_moves (lst). It will iterate
+// over stack and put ->content to 0 and frees nodes.
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 void		mv_lstclear(t_moves	**lst);
+// Function takes in a pointer t_moves (lst) and returns size
+// in int.
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 int			mv_lstsize(t_moves *lst);
+// Function takes in a int (content) and returns a t_moves node
+// with the content (int) as the content member of the node 
+// (node->content).
+// Function has failed when return value is NULL.
+// Function is exactly the same as ps_ equivalent, but used to save the
+// moves instead of executing them.
 t_moves		*mv_lstnew(int content);
+// Function takes in a t_moves **(lst) and deletes the last node of a list, 
+// and puts the second to last node's next member to null. Function uses
+// mv_lst_second_last() in the background.
 void		mv_dellast(t_moves	**lst);
 
 // stack
@@ -240,27 +282,56 @@ void		rev_rotate(t_pslist **stack, int print);
 // function for both of them.
 void		rev_rrotate(t_pslist **stack_a, t_pslist **stack_b);
 
-void		rotate_np(t_pslist **stack);
-void		rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
-void		rev_rotate_np(t_pslist **stack);
-void		rev_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
-void		push_np(t_pslist **stack_1, t_pslist **stack_2);
+// This function takes a stacks and swaps the first
+// two elements. Except if the stack only has one element
+// then it does nothing. the function will not print the move
 void		swap_np(t_pslist **stack);
+// This function takes two stacks and then calls the swap
+// function for both of them. the function will not print the move
 void		sswap_np(t_pslist **stack_a, t_pslist **stack_b);
+// This function takes two stacks, and puts the first element
+// of stack_1 on top of stack_2, if stack_1 is empty function
+// does nothing. the function will not print the move
+void		push_np(t_pslist **stack_1, t_pslist **stack_2);
+// This function takes a stack, and puts the first element
+// as the last element. if stack is made of only one element, 
+// it will do nothing.
+// the function will not print the move
+void		rotate_np(t_pslist **stack);
+// This function takes two stacks and then calls the rotate
+// function for both of them. the function will not print the move
+void		rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
+// This function takes a stack, and puts the last element
+// as the first element. if stack is made of only one element, 
+// it will do nothing.
+// the function will not print the move
+void		rev_rotate_np(t_pslist **stack);
+// This function takes two stacks and then calls the rev_rotate
+// the function will not print the move
+void		rev_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
 
-void		un_rotate_np(t_pslist **stack);
-void		un_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
-void		un_rev_rotate_np(t_pslist **stack);
-void		un_rev_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
-void		un_push_np(t_pslist **stack_2, t_pslist **stack_1);
+// This function reverses the swap_np 
 void		un_swap_np(t_pslist **stack);
+// This function reverses the sswap_np
 void		un_sswap_np(t_pslist **stack_a, t_pslist **stack_b);
+// This function reverses the push_np
+void		un_push_np(t_pslist **stack_2, t_pslist **stack_1);
+// This function reverses the rotate_np
+void		un_rotate_np(t_pslist **stack);
+// This function reverses the rrotate_np
+void		un_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
+// This function reverses the rev_rotate_np
+void		un_rev_rotate_np(t_pslist **stack);
+// This function reverses the rev_rrotate_np
+void		un_rev_rrotate_np(t_pslist **stack_a, t_pslist **stack_b);
 //algorithmes
 
 void		bubble_sort(t_pslist	**stack_a, t_pslist	**stack_b);
 void		radix(t_pslist	**stack_a, t_pslist	**stack_b);
 void		recurse_sort(t_pslist **stack_a, t_pslist **stack_b);
 int			cal_sort(t_pslist **stack_a, t_pslist **stack_b);
+void		sort_small(t_pslist **stacka, t_pslist **stackb);
+
 //lis 
 
 int			lis(t_pslist **stack_a);
@@ -289,8 +360,6 @@ void		print_index_stack(t_pslist	**stack, char name);
 void		sort_index(t_pslist **stack_a);
 void		init_index(t_pslist **stack_a, int *stack_c, int len);
 void		init_c(t_pslist **stack_a, int *stack_c);
-void		selectionSort(int arr[], int n);
-void		ss_swap(int *xp, int *yp);
 void		print_index_lds_stack(t_pslist	**stack, char name);
 void		print_index_lis_stack(t_pslist	**stack, char name);
 int			calc_max(t_pslist**stack_a);
@@ -301,5 +370,6 @@ int			min(int a, int b);
 void		free2(void *f1, void *f2);
 void		print_t_moves(t_moves **moves);
 void		print_index_stack_binary(t_pslist	**stack, char name);
+void		add_binary(t_pslist	**stack_a);
 
 #endif
