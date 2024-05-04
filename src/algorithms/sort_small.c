@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 16:18:27 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 17:02:33 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:23:47 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	sort_small_4(t_pslist **stacka, t_pslist **stackb, int size)
 			rotate(stacka, ra);
 		size--;
 	}
-	if (((*stackb)->index == 0))
+	if ((*stackb)->index == 0)
 		swap(stackb, sb);
 	if ((*stacka)->next->index != 4)
 	{
@@ -64,9 +64,9 @@ void	sort_small_4(t_pslist **stacka, t_pslist **stackb, int size)
 
 void	sort_small_3(t_pslist **stacka)
 {
-	if (((*stacka)->next->next->index != 2))
+	if ((*stacka)->next->next->index != 2)
 	{
-		if (((*stacka)->index == 2))
+		if ((*stacka)->index == 2)
 			rotate(stacka, ra);
 		else
 			rev_rotate(stacka, rra);
