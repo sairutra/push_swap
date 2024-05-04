@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:09:32 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 17:15:31 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:54:18 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -370,5 +370,8 @@ void		free2(void *f1, void *f2);
 void		print_t_moves(t_moves **moves);
 void		print_index_stack_binary(t_pslist	**stack, char name);
 void		add_binary(t_pslist	**stack_a);
+void		free_char_array(char **arr);
+char		**init_argv(char **argv, int argc);
+
 
 #endif

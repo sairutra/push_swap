@@ -6,11 +6,19 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:15:31 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 16:39:30 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:53:42 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
+
+
+void free_all(char **argv, t_pslist	*stack_a, t_pslist	*stack_b)
+{
+	free_char_array(argv);
+	ps_lstclear(&stack_a);
+	ps_lstclear(&stack_b);
+}
 
 int	main(int argc, char **argv)
 {
@@ -21,7 +29,10 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
-	if (check_stack(++argv))
+	argv = init_argv(++argv, argc);
+	if (argv == NULL)
+		exit(EXIT_FAILURE);
+	if (check_stack(argv))
 	{
 		ft_printf("Error\n");
 		exit(EXIT_FAILURE);
@@ -34,7 +45,6 @@ int	main(int argc, char **argv)
 		sort_small(&stack_a, &stack_b);
 	else
 		radix(&stack_a, &stack_b);
-	ps_lstclear(&stack_a);
-	ps_lstclear(&stack_b);
+	free_all(argv, stack_a, stack_b);
 	return (0);
 }
