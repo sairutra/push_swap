@@ -6,9 +6,11 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:33:02 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 18:52:16 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:56:53 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../inc/push_swap.h"
 
 void	free_char_array(char **arr)
 {
