@@ -6,18 +6,32 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:15:31 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 17:53:42 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:50:29 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-
-void free_all(char **argv, t_pslist	*stack_a, t_pslist	*stack_b)
+void	free_all(char **argv, t_pslist	*stack_a, t_pslist	*stack_b)
 {
 	free_char_array(argv);
 	ps_lstclear(&stack_a);
 	ps_lstclear(&stack_b);
+}
+
+void	check_args(char **argv)
+{
+	if (argv[0] == NULL)
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
+	if (check_stack(argv))
+	{
+		free_char_array(argv);
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -30,13 +44,7 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
 	argv = init_argv(++argv, argc);
-	if (argv == NULL)
-		exit(EXIT_FAILURE);
-	if (check_stack(argv))
-	{
-		ft_printf("Error\n");
-		exit(EXIT_FAILURE);
-	}
+	check_args(argv);
 	if (create_stack(&stack_a, argv))
 		exit(EXIT_FAILURE);
 	sort_index(&stack_a);
