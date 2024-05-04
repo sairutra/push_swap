@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 18:06:00 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/28 18:08:28 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:16:27 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ int	check_stack_argument_int(char *test)
 	ret = ft_atoi(test);
 	cmp = ft_itoa(ret);
 	if (cmp == NULL)
-	{
-		ft_printf("malloc failed in check_stack_a_argument_int\n");
 		return (EXIT_FAILURE);
-	}
 	if (ft_strncmp(test, cmp, ft_strlen(test)))
 	{
 		free(cmp);
@@ -82,10 +79,7 @@ int	check_stack_duplicate(char **argv)
 			if (len < ft_strlen(argv[ii]))
 				len = ft_strlen(argv[ii]);
 			if (!ft_strncmp(argv[oi], argv[ii++], len))
-			{
-				ft_printf("fail: argv-oi%s argv-ii%s\n", argv[oi], argv[--ii]);
 				return (EXIT_FAILURE);
-			}
 		}
 		oi++;
 		ii = oi + 1;
@@ -96,14 +90,8 @@ int	check_stack_duplicate(char **argv)
 int	check_stack(char **argv)
 {
 	if (check_stack_arguments(argv))
-	{
-		ft_printf("fail arg\n");
 		return (1);
-	}
 	if (check_stack_duplicate(argv))
-	{
-		ft_printf("fail dup\n");
 		return (1);
-	}
 	return (0);
 }

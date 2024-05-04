@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:09:32 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 16:36:08 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:15:31 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "../lib/libft/inc/libft.h"
-# include "../tests/gnirut/inc/gnirut.h"
 
 //This struct is used as a list data structure for sorting the input of the 
 // program. It has the following members, which are used in the following

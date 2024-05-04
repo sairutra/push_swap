@@ -19,8 +19,6 @@ LIBFT       := libft
 LIB         := lib
 TESTS       := tests
 LIBFT.A     := libft.a
-GNIRUT      := gnirut
-GNIRUT.A    := gnirut.a
 
 #---------------------------------------------------------------------------------
 #DO NOT EDIT BELOW THIS LINE
@@ -29,12 +27,11 @@ SOURCES     := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS     := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.$(OBJEXT)))
 
 #Default Make
-all: directories $(LIBFT.A) $(GNIRUT.A) $(TARGET)
+all: directories $(LIBFT.A)  $(TARGET)
 
 #Remake
 re: fclean all
 	@$(MAKE) -C $(LIB)/$(LIBFT) re
-	@$(MAKE) -C $(TESTS)/$(GNIRUT) re
 
 #Make the Directories
 directories:
@@ -53,13 +50,10 @@ fclean: clean
 
 #Link
 $(TARGET): $(OBJECTS)
-	$(CC) $^ $(LIB)/$(LIBFT)/$(LIB)/$(LIBFT.A) $(TESTS)/$(GNIRUT)/$(LIB)/$(GNIRUT.A) -o $(TARGETDIR)/$(TARGET) -g
+	$(CC) $^ $(LIB)/$(LIBFT)/$(LIB)/$(LIBFT.A) -o $(TARGETDIR)/$(TARGET) -g
 
 $(LIBFT.A):
 	@$(MAKE) -C $(LIB)/$(LIBFT) all
-
-$(GNIRUT.A):
-	@$(MAKE) -C $(TESTS)/$(GNIRUT)/ all
 
 #Compile
 $(BUILDDIR)/%.$(OBJEXT): $(SRCDIR)/%.$(SRCEXT)
