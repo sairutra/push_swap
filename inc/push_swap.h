@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 13:09:32 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 13:30:08 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:08:36 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,69 @@
 # include "../lib/libft/inc/libft.h"
 # include "../tests/gnirut/inc/gnirut.h"
 
+//This struct is used as a list data structure for sorting the input of the 
+// program. It has the following members, which are used in the following
+// algoritms:
+//
+// int content (all)
+// int index (radix, recurse)
+// int lds (recurse)
+// int lis (cal_sort)
+// int binary (radix)
+// struct s_pslist	*next (all)
+//
+// content:
+// This is the actual content of the node itself, in order words, this is the
+// value that needs to be sorted in relationship to the other nodes.
+// index:
+// the index member is assigned with the sort_index() function, in order to
+// assign each node an index based on it's content in ascending order 
+// in relation to the rest of the list that needs to be sorted
+// lds:
+// the lds (longest descending sequence) member is assigned with 
+// the lds() function. This member acts as a flag to indicate that 
+// the particular node is part of a lds.
+// lis
+// the lis (longest increasing sequence) member is assigned with 
+// the lis() function. This member acts as a flag to indicate that the 
+// particular node is part of a lis.
+// binary:
+// this member is used in combination with the index member. This member will
+// hold the binary representation of the index value. So it can be used in 
+// radix to sort in base 2. 
+// next:
+// this is a pointer to the next node in the list. If value of next is
+// NULL then it is at the end of the list.
 typedef struct s_pslist
 {
 	int				content;
-	int				rrank;
 	int				index;
 	int				lds;
 	int				lis;
-	int				binary;
+	long long int	binary;
 	struct s_pslist	*next;
 }	t_pslist;
 
+//This struct is used as a list data structure in order to save all 
+// the moves, instead of executing the move. It has the following members, 
+// which are used in the following algoritms:
+//
+// int	move (recurse)
+// struct s_moves	*next (recurse)
 typedef struct s_moves
 {
 	int				move;
 	struct s_moves	*next;
 }	t_moves;
 
+//This is an enum to have names for stacka and b for readability. 
 enum e_stack
 {
 	stacka,
 	stackb
 };
 
+//This is an enum to have names for the swap operations for readability. 
 enum e_swap
 {
 	ss,
@@ -46,12 +86,14 @@ enum e_swap
 	sb
 };
 
+//This is an enum to have names for the push operations for readability. 
 enum e_push
 {
 	pa,
 	pb
 };
 
+//This is an enum to have names for the rotate operations for readability. 
 enum e_rotate
 {
 	ra,
@@ -59,6 +101,7 @@ enum e_rotate
 	rr
 };
 
+//This is an enum to have names for the rrotate operations for readability. 
 enum e_rrotate
 {
 	rra,
@@ -66,6 +109,8 @@ enum e_rrotate
 	rrr
 };
 
+//This is an enum to have names for the moves for readability. This enum is 
+//mostly used in the recurse algoritm.
 enum e_moves
 {
 	nm,
