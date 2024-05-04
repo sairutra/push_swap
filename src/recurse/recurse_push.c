@@ -6,33 +6,33 @@
 /*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 19:37:05 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/30 17:39:04 by spenning         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:31:01 by spenning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	recurse_push(int max, t_pslist **stacks[], t_moves **moves, int size)
+int	recurse_push(int max, t_pslist **st[], t_moves **mv, int size)
 {
 	int	succesful;
 
-	mv_dellast(moves);
-	un_sswap_np(stacks[stacka], stacks[stackb]);
-	push_np(stacks[stacka], stacks[stackb]);
-	mv_lstadd_back(moves, mv_lstnew(mpb));
-	succesful = recurse(max - 1, stacks, moves, size);
+	mv_dellast(mv);
+	un_sswap_np(st[stacka], st[stackb]);
+	push_np(st[stacka], st[stackb]);
+	mv_lstadd_back(mv, mv_lstnew(mpb));
+	succesful = recurse(max - 1, st, mv, size);
 	if (!succesful)
 	{
-		mv_dellast(moves);
-		un_push_np(stacks[stackb], stacks[stacka]);
-		push_np(stacks[stackb], stacks[stacka]);
-		mv_lstadd_back(moves, mv_lstnew(mpa));
-		succesful = recurse(max - 1, stacks, moves, size);
+		mv_dellast(mv);
+		un_push_np(st[stackb], st[stacka]);
+		push_np(st[stackb], st[stacka]);
+		mv_lstadd_back(mv, mv_lstnew(mpa));
+		succesful = recurse(max - 1, st, mv, size);
 	}
 	if (!succesful)
 	{
-		mv_dellast(moves);
-		un_push_np(stacks[stacka], stacks[stackb]);
+		mv_dellast(mv);
+		un_push_np(st[stacka], st[stackb]);
 	}
 	return (succesful);
 }
