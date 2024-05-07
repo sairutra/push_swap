@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 13:15:31 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 18:50:29 by spenning         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: spenning <spenning@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/04/25 13:15:31 by spenning      #+#    #+#                 */
+/*   Updated: 2024/05/07 18:00:46 by spenning      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	check_args(char **argv)
 {
 	if (argv[0] == NULL)
 	{
-		ft_printf("Error\n");
-		exit(EXIT_FAILURE);
+		ft_putstr_fd("Error\n", 2);
+		exit(EXIT_SUCCESS);
 	}
 	if (check_stack(argv))
 	{
 		free_char_array(argv);
-		ft_printf("Error\n");
-		exit(EXIT_FAILURE);
+		ft_putstr_fd("Error\n", 2);
+		exit(EXIT_SUCCESS);
 	}
 }
 

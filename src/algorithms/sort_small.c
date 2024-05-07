@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort_small.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 16:18:27 by spenning          #+#    #+#             */
-/*   Updated: 2024/05/04 17:23:47 by spenning         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   sort_small.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: spenning <spenning@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/05/04 16:18:27 by spenning      #+#    #+#                 */
+/*   Updated: 2024/05/07 17:59:45 by spenning      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	sort_small_3(t_pslist **stacka)
 
 void	sort_small_2(t_pslist **stacka)
 {
-	if (!check_n_sorted(stacka, 2, 'a'))
-		rotate(stacka, 'a');
+	if (!check_n_sorted(stacka, 2, '+'))
+		rotate(stacka, ra);
 }
 
 void	sort_small(t_pslist **stacka, t_pslist **stackb)
