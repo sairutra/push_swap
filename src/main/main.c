@@ -6,7 +6,7 @@
 /*   By: spenning <spenning@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/04/25 13:15:31 by spenning      #+#    #+#                 */
-/*   Updated: 2024/05/07 18:07:41 by spenning      ########   odam.nl         */
+/*   Updated: 2024/05/09 12:05:20 by spenning      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	free_all(char **argv, t_pslist	*stack_a, t_pslist	*stack_b)
 	ps_lstclear(&stack_b);
 }
 
-
 void	check_stack_sorted(t_pslist **stacka, char **argv)
 {
-	if(check_n_sorted(stacka, ps_lstsize((*stacka)), '+'))
+	if (check_n_sorted(stacka, ps_lstsize((*stacka)), '+'))
 	{
 		ps_lstclear(stacka);
 		free_char_array(argv);
