@@ -51,7 +51,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-libft
 push_swap
 bin
 obj
