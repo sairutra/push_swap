@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_sorted.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: spenning <spenning@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 18:26:49 by spenning          #+#    #+#             */
-/*   Updated: 2024/04/28 18:29:59 by spenning         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   check_sorted.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mynodeus <mynodeus@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/04/28 18:26:49 by spenning      #+#    #+#                 */
+/*   Updated: 2024/06/19 21:18:32 by mynodeus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ int	check_sorted_stack(t_pslist	**stack_a, t_pslist**stack_b)
 		ret = 1;
 	if (!check_n_sorted(stack_b, ps_lstsize((*stack_b)), '-'))
 		ret = 0;
-	return (0);
+	return (ret);
 }
